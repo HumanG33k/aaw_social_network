@@ -1,0 +1,18 @@
+Thu Nov 26 11:16:18 CET 2015 : Apache Derby Network Server - 10.10.2.0 - (1582446) démarré et prêt à accepter les connexions sur le port 1527
+----------------------------------------------------------------
+Thu Nov 26 11:16:18 CET 2015:
+Amorçage de Derby version The Apache Software Foundation - Apache Derby - 10.10.2.0 - (1582446) : instance a816c00e-0151-434b-2abd-00001f7b6f10 
+dans le répertoire de base de données /home/SP2MI/nvillemi/Documents/AAW/aaw_social_network/AAW_Project/src/database/db_social_network_apache_derby avec le chargeur de classe sun.misc.Launcher$AppClassLoader@1043fb68
+Chargé de file:/usr/local/glassfish-4.1/javadb/lib/derby.jar
+java.vendor=Oracle Corporation
+java.runtime.version=1.7.0_65-b32
+user.dir=/usr/local/glassfish-4.1/javadb
+os.name=Linux
+os.arch=amd64
+os.version=3.13.0-44-generic
+derby.system.home=/home/SP2MI/nvillemi/Documents/AAW/aaw_social_network/AAW_Project/src/database
+Chargeur de classe de la base de données démarré - derby.database.classpath = ''
+----------------------------------------------------------------
+Thu Nov 26 11:16:22 CET 2015:
+Fermeture de l'instance a816c00e-0151-434b-2abd-00001f7b6f10 sur le répertoire de base de données /home/SP2MI/nvillemi/Documents/AAW/aaw_social_network/AAW_Project/src/database/db_social_network_apache_derby avec le chargeur de classe sun.misc.Launcher$AppClassLoader@1043fb68 
+Thu Nov 26 11:16:22 CET 2015 Thread[DRDAConnThread_3,5,main] (DATABASE = db_social_network_apache_derby), (DRDAID = {2}), Arrêt de la base de données 'db_social_network_apache_derby'.
