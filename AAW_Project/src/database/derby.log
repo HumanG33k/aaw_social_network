@@ -16,3 +16,6 @@ Chargeur de classe de la base de données démarré - derby.database.classpath =
 Thu Nov 26 11:16:22 CET 2015:
 Fermeture de l'instance a816c00e-0151-434b-2abd-00001f7b6f10 sur le répertoire de base de données /home/SP2MI/nvillemi/Documents/AAW/aaw_social_network/AAW_Project/src/database/db_social_network_apache_derby avec le chargeur de classe sun.misc.Launcher$AppClassLoader@1043fb68 
 Thu Nov 26 11:16:22 CET 2015 Thread[DRDAConnThread_3,5,main] (DATABASE = db_social_network_apache_derby), (DRDAID = {2}), Arrêt de la base de données 'db_social_network_apache_derby'.
+----------------------------------------------------------------
+Thu Nov 26 11:29:27 CET 2015 : fermeture du moteur Derby
+----------------------------------------------------------------
