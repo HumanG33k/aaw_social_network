@@ -4,22 +4,46 @@
 
 <html>
     <head>
-        <link type="text/css" rel="stylesheet" href="resources/css/foundation.css" />
+
+        <link type="text/css" rel="stylesheet" href="resources/css/foundation.css">
+        <link type="text/css" rel="stylesheet" href="resources/css/app.css">
+        <link type="text/css" rel="stylesheet" href="resources/icon/foundation-icons.css">
+
+        <script src="resources/js/jquery.js"></script>
+        <script src="resources/js/foundation.js"></script>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Welcome to Spring Web MVC project</title>
+        <title>Welcome to Social Network project</title>
     </head>
 
     <body>
-        <div class="row">
-            <div class="large-12 columns">
-                <h1>Welcome to Foundation for Sites 6</h1>
+        <%@ include file="./fragments/_header.jsp" %>
+        <h1 class="text-center">Welcome to Social Network XYT-7 </h1>
+
+        <div class="row medium-uncollapse large-collapse">
+            <div class="medium-4 columns container-hover">
+                <label>Display Name
+                    <input type="text" aria-describedby="DisplayNameHelpText">
+                </label>
+                <p class="help-text" id="DisplayNameHelpText">Your display name.</p>
+                <%@ include file="./fragments/_login_form.jsp" %>
+                <button type="button" class=" button expanded">Sign up</button>
+                    
+            </div>
+            <div class="medium-4 columns container-hover">
+                <div class="glyph">
+                    <div class="preview-glyphs text-center">
+                        <i class="step fi-share size-72 "></i>
+
+                    </div>
+                </div>  
+            </div>
+
+            <div class="medium-4 columns container-hover">
+                <%@ include file="./fragments/_login_form.jsp" %>
+                <button type="button" class="success button expanded">Sign In</button>
             </div>
         </div>
-        <p>Hello! This is the default welcome page for a Spring Web MVC project.</p>
-        <p><i>To display a different welcome page for this project, modify</i>
-            <tt>index.jsp</tt> <i>, or create your own welcome page then change
-                the redirection in</i> <tt>redirect.jsp</tt> <i>to point to the new
-                welcome page and also update the welcome-file setting in</i>
-            <tt>web.xml</tt>.</p>
+        <%@ include file="./fragments/_footer.jsp" %>
+
     </body>
 </html>
