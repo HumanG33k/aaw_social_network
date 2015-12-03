@@ -4,7 +4,6 @@
 
 <html>
     <head>
-
         <link type="text/css" rel="stylesheet" href="resources/css/foundation.css">
         <link type="text/css" rel="stylesheet" href="resources/css/app.css">
         <link type="text/css" rel="stylesheet" href="resources/icon/foundation-icons.css">
@@ -17,29 +16,31 @@
 
     <body>
         <%@ include file="../fragments/_header.jsp" %>
-        <h1 class="text-center">Welcome to Social Network XYT-7 </h1>
 
-        <div class="row medium-uncollapse large-collapse">
-            <div class="medium-4 columns container-hover">
-  
-                <%@ include file="../fragments/_profile_form.jsp" %>
-                <button type="button" class=" button expanded">Sign up</button>
-                    
-            </div>
-            <div class="medium-4 columns container-hover">
-                <div class="glyph">
-                    <div class="preview-glyphs text-center">
-                        <i class="step fi-share size-72 "></i>
-
-                    </div>
-                </div>  
-            </div>
-
-            <div class="medium-4 columns container-hover">
-                <%@ include file="../fragments/_login_form.jsp" %>
-                <button type="button" class="success button expanded">Sign In</button>
-            </div>
+        <div class="primary callout text-center">
+            <p>Friends</p>
         </div>
+        <div class="row small-up-1 medium-up-2 large-up-4">
+            <% for (int i = 0; i < 10; i += 1) {%>
+            <div class="column media-object">
+                <div class="media-object-section left">
+                    <div class="thumbnail ">
+                        <img src= "resources/img/profile.jpg" class="profile_picture">
+                    </div>
+                </div>
+                <div class="media-object-section">
+                    <a href="<%=request.getContextPath()%>/profile.htm" class="margin-bottom-1 text-left">Jean-Michel</a>
+                    
+                    <div class="preview-glyphs">
+                        <a href="" class="step fi-x size-12 warning "></a>
+                    </div>
+                </div>
+            </div>
+            <% }%>
+
+            <button type="button" class="success button expanded">Save</button>
+        </div>
+
         <%@ include file="../fragments/_footer.jsp" %>
 
     </body>

@@ -22,6 +22,9 @@
         <property name="mappings">
             <props>
                 <prop key="index.htm">indexController</prop>
+                <prop key="profile.htm">profileController</prop>
+                <prop key="friends.htm">friendsController</prop>
+                <prop key="home.htm">homeController</prop>
             </props>
         </property>
     </bean>
@@ -37,6 +40,18 @@
     <bean name="indexController"
           class="org.springframework.web.servlet.mvc.ParameterizableViewController"
           p:viewName="index" />
+    
+    <bean name="profileController"
+          class="org.springframework.web.servlet.mvc.ParameterizableViewController"
+          p:viewName="profile" />
+    
+    <bean name="friendsController"
+          class="org.springframework.web.servlet.mvc.ParameterizableViewController"
+          p:viewName="friends" />
+    
+    <bean name="homeController"
+          class="org.springframework.web.servlet.mvc.ParameterizableViewController"
+          p:viewName="home" />
 
     <mvc:resources mapping="/resources/**" location="/resources/" />
     

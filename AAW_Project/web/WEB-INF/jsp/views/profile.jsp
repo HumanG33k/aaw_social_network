@@ -4,7 +4,6 @@
 
 <html>
     <head>
-
         <link type="text/css" rel="stylesheet" href="resources/css/foundation.css">
         <link type="text/css" rel="stylesheet" href="resources/css/app.css">
         <link type="text/css" rel="stylesheet" href="resources/icon/foundation-icons.css">
@@ -18,8 +17,13 @@
     <body>
         <%@ include file="../fragments/_header.jsp" %>
         
-        
-        
+        <div class="rows ">
+            <div class="columns small-centered small-4">
+                <%@ include file="../fragments/_profile_form.jsp" %>
+                <button type="button" class="success button expanded">Save</button>
+            </div>
+        </div>
+       
         <%@ include file="../fragments/_footer.jsp" %>
 
     </body>

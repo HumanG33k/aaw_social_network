@@ -15,8 +15,9 @@
           <li><a href="#">Three</a></li>
         </ul>
       </li>
-      <li><a href="#">Two</a></li>
-      <li><a href="#">Three</a></li>
+      <li><a href="<%=request.getContextPath() %>/home.htm">Home</a></li>
+      <li><a href="<%=request.getContextPath() %>/profile.htm">Profile</a></li>
+      <li><a href="<%=request.getContextPath() %>/friends.htm">Friends</a></li>
     </ul>
   </div>
   <div class="top-bar-right">

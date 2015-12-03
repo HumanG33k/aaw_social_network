@@ -1,17 +1,68 @@
-<%-- 
-    Document   : home
-    Created on : 27 nov. 2015, 11:54:09
-    Author     : nvillemi
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+    "http://www.w3.org/TR/html4/loose.dtd">
+
 <html>
     <head>
+        <link type="text/css" rel="stylesheet" href="resources/css/foundation.css">
+        <link type="text/css" rel="stylesheet" href="resources/css/app.css">
+        <link type="text/css" rel="stylesheet" href="resources/icon/foundation-icons.css">
+
+        <script src="resources/js/jquery.js"></script>
+        <script src="resources/js/foundation.js"></script>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>Welcome to Social Network project</title>
     </head>
+
     <body>
-        <h1>Hello World!</h1>
+        <%@ include file="../fragments/_header.jsp" %>
+
+        <div class="primary callout text-center">
+            <p>Home</p>
+        </div>
+
+        <div class="rows ">
+            <div class="row small-uncollapse large-collapse">
+
+
+
+                    <div class="thumbnail columns large-1">
+                        <img src= "resources/img/profile.jpg" class="profile_picture">
+                    </div>
+
+                    <div class="large-11 columns">
+                        <label>Display Name
+                            <input type="text" aria-describedby="DisplayNameHelpText">
+                        </label>
+                        <p class="help-text" id="DisplayNameHelpText">Your display name.</p>
+                        <button type="button" class="success button expanded">Post</button>
+                    </div>
+                
+
+
+
+
+                <% for (int i = 0; i < 10; i += 1) {%>
+                <div class="column media-object">
+                    <div class="media-object-section left">
+                        <div class="thumbnail ">
+                            <img src= "resources/img/profile.jpg" class="profile_picture">
+                        </div>
+                    </div>
+                    <div class="media-object-section">
+                        <a href="<%=request.getContextPath()%>/profile.htm" class="margin-bottom-1 text-left">Jean-Michel</a>
+
+                        <div class="preview-glyphs">
+                            <a href="" class="step fi-x size-12 warning "></a>
+                        </div>
+                    </div>
+                </div>
+                <% }%>
+            </div>
+        </div>
+
+
+        <%@ include file="../fragments/_footer.jsp" %>
+
     </body>
 </html>
