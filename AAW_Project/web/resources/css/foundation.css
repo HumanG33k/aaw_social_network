@@ -2220,7 +2220,7 @@ select {
       padding-bottom: 1rem; }
       .media-object.stack-for-small .media-object-section img {
         width: 100%; } }
-/*
+
 .media-object-section {
   display: table-cell;
   vertical-align: top; }
@@ -2231,7 +2231,7 @@ select {
   .media-object-section.middle {
     vertical-align: middle; }
   .media-object-section.bottom {
-    vertical-align: bottom; }*/
+    vertical-align: bottom; }
 
 .menu {
   margin: 0;
