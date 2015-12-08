@@ -6,7 +6,7 @@
 <div class="top-bar" id="example-menu">
   <div class="top-bar-left">
     <ul class="dropdown menu" data-dropdown-menu>
-      <li class="menu-text">Site Title</li>
+      <li class="menu-text">XYT-7</li>
       <li class="has-submenu">
         <a href="#">One</a>
         <ul class="submenu menu vertical" data-submenu>
