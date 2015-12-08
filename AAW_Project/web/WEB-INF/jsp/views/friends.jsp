@@ -32,13 +32,11 @@
                     <a href="<%=request.getContextPath()%>/profile.htm" class="margin-bottom-1 text-left">Jean-Michel</a>
                     
                     <div class="preview-glyphs">
-                        <a href="" class="step fi-x size-12 warning "></a>
+                        <a href="" class="step fi-x  badge"></a>
                     </div>
                 </div>
             </div>
             <% }%>
-
-            <button type="button" class="success button expanded">Save</button>
         </div>
 
         <%@ include file="../fragments/_footer.jsp" %>

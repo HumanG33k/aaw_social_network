@@ -17,6 +17,10 @@
     <body>
         <%@ include file="../fragments/_header.jsp" %>
         
+        <div class="primary callout text-center">
+            <p>Profile</p>
+        </div>
+        
         <div class="rows ">
             <div class="columns small-centered small-4">
                 <%@ include file="../fragments/_profile_form.jsp" %>
