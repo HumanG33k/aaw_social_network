@@ -3,14 +3,10 @@
     Created on : 29 nov. 2015, 19:05:20
     Author     : jerome
 --%>
-
-
-
-
 <label>Email
   <input type="email" aria-describedby="emailHelpText">
 </label>
-<p class="help-text" id="emailHelpText">You must have a correct email.</p>
+<p class="help-text" id="emailHelpText">You must have a valid email address.</p>
 <label>Password
   <input type="password" aria-describedby="passwordHelpText">
 </label>

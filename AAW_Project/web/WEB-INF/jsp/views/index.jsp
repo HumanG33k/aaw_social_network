@@ -16,28 +16,29 @@
     </head>
 
     <body>
-        <%@ include file="../fragments/_header.jsp" %>
-        <h1 class="text-center">Welcome to Social Network XYT-7 </h1>
-
+        <h1 class="text-center">Welcome to Social Network XYT-7</h1>
+        <h5 class="text-center" id="indexMessage">Please sign up or sign in if you already have an account.</h5>
+        
         <div class="row medium-uncollapse large-collapse">
             <div class="medium-4 columns container-hover">
-  
-                <%@ include file="../fragments/_profile_form.jsp" %>
-                <button type="button" class=" button expanded">Sign up</button>
-                    
+                <form method="post" action="index.htm">
+                    <%@ include file="../fragments/_profile_form.jsp" %>
+                    <button type="submit" class="button expanded">Sign up</button>
+                </form>
             </div>
             <div class="medium-4 columns container-hover">
                 <div class="glyph">
                     <div class="preview-glyphs text-center">
                         <i class="step fi-share size-72 "></i>
-
                     </div>
-                </div>  
+                </div>
             </div>
 
             <div class="medium-4 columns container-hover">
-                <%@ include file="../fragments/_login_form.jsp" %>
-                <button type="button" class="success button expanded">Sign In</button>
+                <form method="post" action="home.htm">
+                    <%@ include file="../fragments/_login_form.jsp" %>
+                    <button type="button" class="success button expanded">Sign In</button>
+                </form>
             </div>
         </div>
         <%@ include file="../fragments/_footer.jsp" %>

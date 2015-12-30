@@ -16,8 +16,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.crypto.password.StandardPasswordEncoder;
 
 /**
@@ -36,6 +34,8 @@ public class UsersEntity implements Serializable {
     @Column
     private String name;
     @Column
+    private String email;
+    @Column
     private String password;
     @JoinTable(
         name="users_users",
@@ -45,8 +45,9 @@ public class UsersEntity implements Serializable {
     @ManyToMany
     private List<UsersEntity> friends = new ArrayList<>();
 
-    public UsersEntity(String name, String password) {
+    public UsersEntity(String name, String email, String password) {
         this.name = name;
+        this.email = email;
         this.password = this.encoder.encode(password);
     }
     
@@ -82,5 +83,4 @@ public class UsersEntity implements Serializable {
     public String toString() {
         return "dao.UsersEntity[ id=" + id + " ]";
     }
-    
 }
