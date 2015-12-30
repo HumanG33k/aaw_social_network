@@ -10,5 +10,8 @@ package dao;
  * @author nvillemi
  */
 public interface UsersDao {
-    
+    public void save(UsersEntity user);
+    public void update(UsersEntity user);
+    public void delete(UsersEntity user);
+    public UsersEntity find(String name);
 }
