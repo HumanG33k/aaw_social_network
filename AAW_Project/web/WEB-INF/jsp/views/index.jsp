@@ -37,7 +37,7 @@
             <div class="medium-4 columns container-hover">
                 <form method="post" action="home.htm">
                     <%@ include file="../fragments/_login_form.jsp" %>
-                    <button type="button" class="success button expanded">Sign In</button>
+                    <button type="submit" class="success button expanded">Sign In</button>
                 </form>
             </div>
         </div>

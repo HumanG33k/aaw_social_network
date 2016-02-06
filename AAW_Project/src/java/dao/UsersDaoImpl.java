@@ -17,7 +17,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public class UsersDaoImpl implements UsersDao {
     // Le contexte de persistance est décrit dans le fichier hibernate persistence.xml
-    @PersistenceContext(unitName="SocialNetworkJPAPU")
+    @PersistenceContext(unitName="AAW_ProjectPU")
     private EntityManager em;
     
     @Transactional

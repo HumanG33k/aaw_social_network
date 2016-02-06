@@ -4,7 +4,7 @@
     Author     : nvillemi
 --%>
 <label>Display Name
-    <input type="text" aria-describedby="DisplayNameHelpText">
+    <input type="text" aria-describedby="DisplayNameHelpText" name="DisplayNameHelpText">
 </label>
 <p class="help-text" id="DisplayNameHelpText">Your display name.</p>
 <%@ include file="./_login_form.jsp" %>

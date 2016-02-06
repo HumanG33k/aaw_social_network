@@ -33,9 +33,9 @@ public class MultiController {
         ModelAndView mv = new ModelAndView("add");
         boolean result = this.usersService.add(name, email, password);
         if(result) {
-            mv.addObject("indexMessage","You have successfully signed up to the social network. You can now sign in.");
+            mv.addObject("indexMessage", "You have successfully signed up to the social network. You can now sign in.");
         } else {
-            mv.addObject("indexMessage","Error: This name is already used.");
+            mv.addObject("indexMessage", "Error: This name is already used.");
         }
         return mv;
     }

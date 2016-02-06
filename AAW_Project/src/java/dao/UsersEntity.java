@@ -16,6 +16,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.Table;
 import org.springframework.security.crypto.password.StandardPasswordEncoder;
 
 /**
@@ -23,15 +24,16 @@ import org.springframework.security.crypto.password.StandardPasswordEncoder;
  * @author nvillemi
  */
 @Entity
+@Table(name = "users")
 public class UsersEntity implements Serializable {
     private static final long serialVersionUID = 1L;
     private static final String salt = "uflil5erk4fcb";
-    private StandardPasswordEncoder encoder = new StandardPasswordEncoder(this.salt);
+    //private StandardPasswordEncoder encoder = new StandardPasswordEncoder(this.salt);
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @Column
+    @Column(unique = true)
     private String name;
     @Column
     private String email;
@@ -48,7 +50,7 @@ public class UsersEntity implements Serializable {
     public UsersEntity(String name, String email, String password) {
         this.name = name;
         this.email = email;
-        this.password = this.encoder.encode(password);
+        //this.password = this.encoder.encode(password);
     }
     
     public Long getId() {
@@ -73,10 +75,7 @@ public class UsersEntity implements Serializable {
             return false;
         }
         UsersEntity other = (UsersEntity) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
-            return false;
-        }
-        return true;
+        return !((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id)));
     }
 
     @Override

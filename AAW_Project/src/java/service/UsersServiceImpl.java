@@ -2,13 +2,16 @@ package service;
 
 import dao.UsersDao;
 import dao.UsersEntity;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 /**
  *
  * @author Nathanael Villemin
  */
-
+@Service
 public class UsersServiceImpl implements UsersService {
+    @Autowired
     UsersDao usersDao;
     
     @Override
