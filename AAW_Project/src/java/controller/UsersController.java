@@ -24,19 +24,29 @@ public class UsersController {
         return "index";
     }
     
+    // Method used to handle the sign up of a new user on the index page
     @RequestMapping(value="index", method=RequestMethod.POST)
     protected ModelAndView handleSignUp(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        // Get the values that the user sent
         String name = request.getParameter("nameSignUp");
         String email = request.getParameter("emailSignUp");
         String password = request.getParameter("passwordSignUp");
         
         ModelAndView mv = new ModelAndView("index");
-        boolean success = this.usersService.add(name, email, password);
-        if(success) {
-            mv.addObject("indexMessage", "You have successfully signed up to the social network. You can now sign in.");
+        
+        // Check that the password is at least 8 characters long
+        if(password.length() < 8) {
+            mv.addObject("indexMessage", "Error: You password must have at least 8 characters.");
+        // Register user in database
         } else {
-            mv.addObject("indexMessage", "Error: This name is already used.");
+            boolean success = this.usersService.add(name, email, password);
+            if(success) {
+                mv.addObject("indexMessage", "You have successfully signed up to the social network. You can now sign in.");
+            } else {
+                mv.addObject("indexMessage", "Error: This name is already used.");
+            }
         }
+        
         return mv;
     }
 }
