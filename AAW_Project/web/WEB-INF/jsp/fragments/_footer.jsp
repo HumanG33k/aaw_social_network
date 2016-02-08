@@ -6,9 +6,8 @@
 
 <hr></hr>
 <footer class="text-center">
-
-Copyright © 2015 Social Network XYT-7
-
-</footer>        <script>
-          $(document).foundation();
-        </script>
+    Copyright © 2016 Social Network XYT-7
+</footer>
+<script>
+    $(document).foundation();
+</script>

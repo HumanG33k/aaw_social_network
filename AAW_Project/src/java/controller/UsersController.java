@@ -15,7 +15,7 @@ import service.UsersService;
  */
 
 @Controller
-public class MultiController {
+public class UsersController {
     @Autowired
     UsersService usersService;
     
@@ -26,13 +26,13 @@ public class MultiController {
     
     @RequestMapping(value="index", method=RequestMethod.POST)
     protected ModelAndView handleSignUp(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        String name = request.getParameter("DisplayNameHelpText");
-        String email = request.getParameter("emailHelpText");
-        String password = request.getParameter("passwordHelpText");
+        String name = request.getParameter("nameSignUp");
+        String email = request.getParameter("emailSignUp");
+        String password = request.getParameter("passwordSignUp");
         
-        ModelAndView mv = new ModelAndView("add");
-        boolean result = this.usersService.add(name, email, password);
-        if(result) {
+        ModelAndView mv = new ModelAndView("index");
+        boolean success = this.usersService.add(name, email, password);
+        if(success) {
             mv.addObject("indexMessage", "You have successfully signed up to the social network. You can now sign in.");
         } else {
             mv.addObject("indexMessage", "Error: This name is already used.");

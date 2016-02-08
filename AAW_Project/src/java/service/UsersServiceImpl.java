@@ -16,7 +16,7 @@ public class UsersServiceImpl implements UsersService {
     
     @Override
     public boolean add(String name, String email, String password) {
-        if(this.usersDao.find(name) == null) {
+        if(this.usersDao.findByName(name) == null) {
             UsersEntity user = new UsersEntity(name, email, password);
             this.usersDao.save(user);
             return true;
@@ -26,7 +26,7 @@ public class UsersServiceImpl implements UsersService {
 
     @Override
     public boolean remove(String name) {
-        UsersEntity user = this.usersDao.find(name);
+        UsersEntity user = this.usersDao.findByName(name);
         if(user != null) {
             this.usersDao.delete(user);
             return true;
@@ -35,7 +35,7 @@ public class UsersServiceImpl implements UsersService {
     }
 
     @Override
-    public UsersEntity find(String name) {
-        return this.usersDao.find(name);
+    public UsersEntity findByName(String name) {
+        return this.usersDao.findByName(name);
     }
 }

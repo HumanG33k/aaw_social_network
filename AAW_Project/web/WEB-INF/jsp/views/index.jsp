@@ -17,15 +17,27 @@
 
     <body>
         <h1 class="text-center">Welcome to Social Network XYT-7</h1>
-        <h5 class="text-center" id="indexMessage">Please sign up or sign in if you already have an account.</h5>
+        <h5 class="text-center" name="indexMessage">${indexMessage}</h5>
         
         <div class="row medium-uncollapse large-collapse">
             <div class="medium-4 columns container-hover">
                 <form method="post" action="index.htm">
-                    <%@ include file="../fragments/_profile_form.jsp" %>
+                    <label>Display name
+                        <input type="text" name="nameSignUp">
+                    </label>
+                    <p class="help-text">Your display name.</p>
+                    <label>Email
+                        <input type="email" name="emailSignUp">
+                    </label>
+                    <p class="help-text">You must have a valid email address.</p>
+                    <label>Password
+                        <input type="password" name="passwordSignUp">
+                    </label>
+                    <p class="help-text">Your password must have at least 8 characters.</p>
                     <button type="submit" class="button expanded">Sign up</button>
                 </form>
             </div>
+
             <div class="medium-4 columns container-hover">
                 <div class="glyph">
                     <div class="preview-glyphs text-center">
@@ -36,12 +48,16 @@
 
             <div class="medium-4 columns container-hover">
                 <form method="post" action="home.htm">
-                    <%@ include file="../fragments/_login_form.jsp" %>
+                    <label>Display name
+                        <input type="text" name="nameSignIn">
+                    </label>
+                    <label>Password
+                        <input type="password" name="passwordSignIn">
+                    </label>
                     <button type="submit" class="success button expanded">Sign In</button>
                 </form>
             </div>
         </div>
         <%@ include file="../fragments/_footer.jsp" %>
-
     </body>
 </html>

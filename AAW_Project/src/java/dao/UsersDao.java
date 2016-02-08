@@ -7,11 +7,12 @@ package dao;
 
 /**
  *
- * @author nvillemi
+ * @author Nathanael Villemin
  */
 public interface UsersDao {
     public void save(UsersEntity user);
     public void update(UsersEntity user);
     public void delete(UsersEntity user);
-    public UsersEntity find(String name);
+    public UsersEntity find(Long id);
+    public UsersEntity findByName(String name);
 }

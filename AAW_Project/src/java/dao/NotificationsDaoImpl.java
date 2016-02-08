@@ -7,7 +7,7 @@ package dao;
 
 /**
  *
- * @author nvillemi
+ * @author Nathanael Villemin
  */
 public class NotificationsDaoImpl {
     

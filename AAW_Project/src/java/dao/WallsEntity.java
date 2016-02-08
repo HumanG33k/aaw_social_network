@@ -13,7 +13,7 @@ import javax.persistence.Id;
 
 /**
  *
- * @author nvillemi
+ * @author Nathanael Villemin
  */
 @Entity
 public class WallsEntity implements Serializable {

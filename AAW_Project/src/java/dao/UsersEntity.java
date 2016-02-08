@@ -21,7 +21,7 @@ import org.springframework.security.crypto.password.StandardPasswordEncoder;
 
 /**
  *
- * @author nvillemi
+ * @author Nathanael Villemin
  */
 @Entity
 @Table(name = "users")
@@ -47,10 +47,13 @@ public class UsersEntity implements Serializable {
     @ManyToMany
     private List<UsersEntity> friends = new ArrayList<>();
 
+    public UsersEntity() {}
+    
     public UsersEntity(String name, String email, String password) {
         this.name = name;
         this.email = email;
         //this.password = this.encoder.encode(password);
+        this.password = password;
     }
     
     public Long getId() {
@@ -82,4 +85,37 @@ public class UsersEntity implements Serializable {
     public String toString() {
         return "dao.UsersEntity[ id=" + id + " ]";
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public List<UsersEntity> getFriends() {
+        return friends;
+    }
+
+    public void setFriends(List<UsersEntity> friends) {
+        this.friends = friends;
+    }
+    
 }

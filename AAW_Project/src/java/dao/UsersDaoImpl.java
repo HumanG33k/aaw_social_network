@@ -6,13 +6,14 @@
 package dao;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 import org.springframework.stereotype.Repository;
 
 /**
  *
- * @author nvillemi
+ * @author Nathanael Villemin
  */
 @Repository
 public class UsersDaoImpl implements UsersDao {
@@ -23,7 +24,7 @@ public class UsersDaoImpl implements UsersDao {
     @Transactional
     @Override
     public void save(UsersEntity user) {
-        this.em.merge(user);
+        user = this.em.merge(user);
         this.em.persist(user);
     }
 
@@ -42,7 +43,30 @@ public class UsersDaoImpl implements UsersDao {
 
     @Transactional
     @Override
-    public UsersEntity find(String name) {
-        return this.em.find(UsersEntity.class, name);
+    public UsersEntity find(Long id) {
+        return (UsersEntity) this.em.find(UsersEntity.class, id);
     }
+    
+    @Transactional
+    @Override
+    public UsersEntity findByName(String name) {
+        try {
+            return (UsersEntity) this.em.createQuery(
+                "SELECT x "
+                + "FROM UsersEntity x "
+                + "WHERE x.name = :value1")
+                .setParameter("value1", name).getSingleResult();
+        } catch (NoResultException e) {
+            return null;
+        }
+    }
+
+    public EntityManager getEm() {
+        return em;
+    }
+
+    public void setEm(EntityManager em) {
+        this.em = em;
+    }
+    
 }
