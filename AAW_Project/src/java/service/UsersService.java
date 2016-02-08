@@ -5,6 +5,7 @@
  */
 package service;
 
+import common.Enums.CheckResult;
 import dao.UsersEntity;
 
 /**
@@ -15,4 +16,5 @@ public interface UsersService {
     public boolean add(String name, String email, String password);
     public boolean remove(String name);
     public UsersEntity findByName(String name);
+    public CheckResult checkSignIn(String name, String password);
 }

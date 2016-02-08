@@ -17,7 +17,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
-import org.springframework.security.crypto.password.StandardPasswordEncoder;
 
 /**
  *
@@ -27,8 +26,7 @@ import org.springframework.security.crypto.password.StandardPasswordEncoder;
 @Table(name = "users")
 public class UsersEntity implements Serializable {
     private static final long serialVersionUID = 1L;
-    private static final String salt = "uflil5erk4fcb";
-    //private StandardPasswordEncoder encoder = new StandardPasswordEncoder(this.salt);
+    
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -52,7 +50,6 @@ public class UsersEntity implements Serializable {
     public UsersEntity(String name, String email, String password) {
         this.name = name;
         this.email = email;
-        //this.password = this.encoder.encode(password);
         this.password = password;
     }
     

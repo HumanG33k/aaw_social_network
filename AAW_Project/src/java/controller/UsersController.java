@@ -1,5 +1,6 @@
 package controller;
 
+import common.Enums.CheckResult;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,6 +46,30 @@ public class UsersController {
             } else {
                 mv.addObject("indexMessage", "Error: This name is already used.");
             }
+        }
+        
+        return mv;
+    }
+    
+    // Method used to handle the sign in of an existing user from the index page
+    @RequestMapping(value="home", method=RequestMethod.POST)
+    protected ModelAndView handleSignIn(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        // Get the values that the user sent
+        String name = request.getParameter("nameSignIn");
+        String password = request.getParameter("passwordSignIn");
+        
+        ModelAndView mv;
+
+        CheckResult result = this.usersService.checkSignIn(name, password);
+        if(result != CheckResult.SUCCESS) {
+            mv = new ModelAndView("index");
+            if(result == CheckResult.WRONG_USER) {
+                mv.addObject("indexMessage", "Error: This user doesn't exist.");
+            } else if(result == CheckResult.WRONG_PASSWORD) {
+                mv.addObject("indexMessage", "Error: Incorrect password.");
+            }
+        } else {
+            mv = new ModelAndView("home");
         }
         
         return mv;

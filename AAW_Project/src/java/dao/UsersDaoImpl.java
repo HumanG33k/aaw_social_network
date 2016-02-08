@@ -52,9 +52,9 @@ public class UsersDaoImpl implements UsersDao {
     public UsersEntity findByName(String name) {
         try {
             return (UsersEntity) this.em.createQuery(
-                "SELECT x "
-                + "FROM UsersEntity x "
-                + "WHERE x.name = :value1")
+                "SELECT user "
+                + "FROM UsersEntity user "
+                + "WHERE user.name = :value1")
                 .setParameter("value1", name).getSingleResult();
         } catch (NoResultException e) {
             return null;
@@ -68,5 +68,4 @@ public class UsersDaoImpl implements UsersDao {
     public void setEm(EntityManager em) {
         this.em = em;
     }
-    
 }

@@ -1,5 +1,6 @@
 package service;
 
+import common.Enums.CheckResult;
 import dao.UsersDao;
 import dao.UsersEntity;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,5 +38,17 @@ public class UsersServiceImpl implements UsersService {
     @Override
     public UsersEntity findByName(String name) {
         return this.usersDao.findByName(name);
+    }
+    
+    @Override
+    public CheckResult checkSignIn(String name, String password) {
+        UsersEntity user = this.findByName(name);
+        if(user == null) {
+            return CheckResult.WRONG_USER;
+        }
+        if(!password.equals(user.getPassword())) {
+            return CheckResult.WRONG_PASSWORD;
+        }
+        return CheckResult.SUCCESS;
     }
 }

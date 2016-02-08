@@ -20,10 +20,12 @@
                 <li><a href="<%=request.getContextPath() %>/files.htm">Files</a></li>
             </ul>
         </div>
+            
         <div class="top-bar-right">
             <ul class="menu">
                 <li><input type="search" placeholder="Search"></li>
                 <li><button type="button" class="button">Search</button></li>
+                <li><button type="button" class="button">Sign out</button></li>
             </ul>
         </div>
     </div>
