@@ -10,7 +10,7 @@ package common;
  * @author Nath
  */
 public class Enums {
-    public enum CheckResult {
+    public enum SignInResult {
         WRONG_USER, WRONG_PASSWORD, SUCCESS
     }
 }

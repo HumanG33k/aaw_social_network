@@ -4,7 +4,6 @@
 
 <html>
     <head>
-
         <link type="text/css" rel="stylesheet" href="resources/css/foundation.css">
         <link type="text/css" rel="stylesheet" href="resources/css/app.css">
         <link type="text/css" rel="stylesheet" href="resources/icon/foundation-icons.css">
@@ -12,7 +11,7 @@
         <script src="resources/js/jquery.js"></script>
         <script src="resources/js/foundation.js"></script>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Welcome to Social Network project</title>
+        <title>Index - Social Network Project</title>
     </head>
 
     <body>

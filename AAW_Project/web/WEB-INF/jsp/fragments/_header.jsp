@@ -24,8 +24,8 @@
         <div class="top-bar-right">
             <ul class="menu">
                 <li><input type="search" placeholder="Search"></li>
-                <li><button type="button" class="button">Search</button></li>
-                <li><button type="button" class="button">Sign out</button></li>
+                <li><a class="button" href="<%=request.getContextPath() %>/search.htm">Search</a></li>
+                <li><a class="button" href="<%=request.getContextPath() %>/index.htm">Sign out</a></li>
             </ul>
         </div>
     </div>
