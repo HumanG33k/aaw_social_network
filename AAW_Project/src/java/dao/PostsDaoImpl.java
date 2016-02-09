@@ -5,10 +5,47 @@
  */
 package dao;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.transaction.Transactional;
+import org.springframework.stereotype.Repository;
+
 /**
  *
  * @author Nathanael Villemin
  */
-public class PostsDaoImpl {
+@Repository
+public class PostsDaoImpl implements PostsDao {
+    // Le contexte de persistance est décrit dans le fichier hibernate persistence.xml
+    @PersistenceContext(unitName="AAW_ProjectPU")
+    private EntityManager em;
     
+    @Transactional
+    @Override
+    public void save(PostsEntity post) {
+        post = this.em.merge(post);
+        this.em.persist(post);
+    }
+
+    @Transactional
+    @Override
+    public void update(PostsEntity post) {
+        this.em.merge(post);
+    }
+
+    @Transactional
+    @Override
+    public void delete(PostsEntity post) {
+        post = this.em.merge(post);
+        this.em.remove(post);
+    }
+
+    @Transactional
+    @Override
+    public PostsEntity find(Long id) {
+        return (PostsEntity) this.em.find(PostsEntity.class, id);
+    }
+    
+    public EntityManager getEm() { return em; }
+    public void setEm(EntityManager em) { this.em = em; }
 }

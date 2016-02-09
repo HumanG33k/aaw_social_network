@@ -27,15 +27,17 @@
                     <img src= "resources/img/profile.jpg" >
                 </div>
 
-                <div class="column medium-11">
-                    <label>
-                        <input type="text" placeholder="Express yourself">
-                    </label>
-                </div>
-                
-                <div class="column">
-                    <button type="button" class="success button expanded">Send a message</button>
-                </div>
+                <form method="post" action="home.htm">
+                    <div class="column medium-11">
+                        <label>
+                            <input type="text" placeholder="Express yourself" name="postContent">
+                        </label>
+                    </div>
+
+                    <div class="column">
+                        <button type="submit" class="success button expanded">Send a message</button>
+                    </div>
+                </form>
             </div>
         </div>
 

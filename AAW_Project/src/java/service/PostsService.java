@@ -3,15 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package dao;
+package service;
 
 /**
  *
  * @author Nathanael Villemin
  */
-public interface PostsDao {
-    public void save(PostsEntity post);
-    public void update(PostsEntity post);
-    public void delete(PostsEntity post);
-    public PostsEntity find(Long id);
+public interface PostsService {
+    public void add(String content, Long userId, Long wallId);
 }

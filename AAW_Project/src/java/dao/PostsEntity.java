@@ -6,28 +6,38 @@
 package dao;
 
 import java.io.Serializable;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  *
  * @author Nathanael Villemin
  */
 @Entity
+@Table(name = "posts")
 public class PostsEntity implements Serializable {
     private static final long serialVersionUID = 1L;
+    
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    @Column
+    private String content;
+    @Column
+    private Long userId;
+    @Column
+    private Long wallId;
 
-    public Long getId() {
-        return id;
-    }
+    public PostsEntity() {}
 
-    public void setId(Long id) {
-        this.id = id;
+    public PostsEntity(String content, Long userId, Long wallId) {
+        this.content = content;
+        this.userId = userId;
+        this.wallId = wallId;
     }
 
     @Override
@@ -55,4 +65,13 @@ public class PostsEntity implements Serializable {
         return "dao.PostsEntity[ id=" + id + " ]";
     }
     
+    // Getters ands setters
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
+    public String getContent() { return content; }
+    public void setContent(String content) { this.content = content; }
+    public Long getUserId() { return userId; }
+    public void setUserId(Long userId) { this.userId = userId; }
+    public Long getWallId() { return wallId; }
+    public void setWallId(Long wallId) { this.wallId = wallId; }
 }

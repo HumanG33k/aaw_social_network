@@ -15,7 +15,6 @@ import service.UsersService;
  *
  * @author Nathanael Villemin
  */
-
 @Controller
 public class UsersController {
     @Autowired
@@ -48,7 +47,7 @@ public class UsersController {
     }
     
     // Method used to handle the sign in of an existing user from the index page
-    @RequestMapping(value="home", method=RequestMethod.POST)
+    @RequestMapping(value="home", method=RequestMethod.POST, params={"nameSignIn", "passwordSignIn"})
     protected ModelAndView handleSignIn(HttpServletRequest request, HttpServletResponse response) throws Exception {
         // Get the values that the user sent
         String name = request.getParameter("nameSignIn");
@@ -70,7 +69,8 @@ public class UsersController {
             // Creating the session of the user
             HttpSession session = request.getSession(true);
             session.setAttribute("name", name);
-            session.setMaxInactiveInterval(600);
+            session.setAttribute("userId", this.usersService.findByName(name).getId());
+            session.setMaxInactiveInterval(600); // Inactive after 10 minutes
         }
         
         return mv;

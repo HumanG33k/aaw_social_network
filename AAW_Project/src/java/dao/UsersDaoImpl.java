@@ -61,11 +61,6 @@ public class UsersDaoImpl implements UsersDao {
         }
     }
 
-    public EntityManager getEm() {
-        return em;
-    }
-
-    public void setEm(EntityManager em) {
-        this.em = em;
-    }
+    public EntityManager getEm() { return em; }
+    public void setEm(EntityManager em) { this.em = em; }
 }

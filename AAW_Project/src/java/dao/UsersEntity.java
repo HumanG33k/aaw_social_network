@@ -21,12 +21,12 @@ import javax.persistence.Table;
 /**
  *
  * @author Nathanael Villemin
+ * 
  */
 @Entity
 @Table(name = "users")
 public class UsersEntity implements Serializable {
     private static final long serialVersionUID = 1L;
-    
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -52,14 +52,6 @@ public class UsersEntity implements Serializable {
         this.email = email;
         this.password = password;
     }
-    
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
 
     @Override
     public int hashCode() {
@@ -70,7 +62,6 @@ public class UsersEntity implements Serializable {
 
     @Override
     public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
         if (!(object instanceof UsersEntity)) {
             return false;
         }
@@ -83,36 +74,15 @@ public class UsersEntity implements Serializable {
         return "dao.UsersEntity[ id=" + id + " ]";
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public List<UsersEntity> getFriends() {
-        return friends;
-    }
-
-    public void setFriends(List<UsersEntity> friends) {
-        this.friends = friends;
-    }
-    
+    // Getters ands setters
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
+    public String getName() { return name; }
+    public void setName(String name) { this.name = name; }
+    public String getEmail() { return email; }
+    public void setEmail(String email) { this.email = email; }
+    public String getPassword() { return password; }
+    public void setPassword(String password) { this.password = password; }
+    public List<UsersEntity> getFriends() { return friends; }
+    public void setFriends(List<UsersEntity> friends) { this.friends = friends; }
 }

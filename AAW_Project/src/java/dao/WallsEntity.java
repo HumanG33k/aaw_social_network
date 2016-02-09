@@ -21,14 +21,8 @@ public class WallsEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
+    
+    
 
     @Override
     public int hashCode() {
@@ -55,4 +49,6 @@ public class WallsEntity implements Serializable {
         return "dao.WallsEntity[ id=" + id + " ]";
     }
     
+    public Long getId() { return id; }
+    public void setId(Long id) { this.id = id; }
 }
