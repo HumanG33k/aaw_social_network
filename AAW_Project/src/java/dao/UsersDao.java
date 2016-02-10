@@ -5,6 +5,8 @@
  */
 package dao;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Nathanael Villemin
@@ -15,4 +17,5 @@ public interface UsersDao {
     public void delete(UsersEntity user);
     public UsersEntity find(Long id);
     public UsersEntity findByName(String name);
+    public ArrayList<UsersEntity> searchByName(String name);
 }

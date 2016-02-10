@@ -3,6 +3,7 @@ package service;
 import common.Enums.SignInResult;
 import dao.UsersDao;
 import dao.UsersEntity;
+import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -38,6 +39,11 @@ public class UsersServiceImpl implements UsersService {
     @Override
     public UsersEntity findByName(String name) {
         return this.usersDao.findByName(name);
+    }
+    
+    @Override
+    public ArrayList<UsersEntity> searchByName(String name) {
+        return this.usersDao.searchByName(name);
     }
     
     @Override

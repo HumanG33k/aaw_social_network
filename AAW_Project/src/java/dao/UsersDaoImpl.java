@@ -5,6 +5,7 @@
  */
 package dao;
 
+import java.util.ArrayList;
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
@@ -54,13 +55,27 @@ public class UsersDaoImpl implements UsersDao {
             return (UsersEntity) this.em.createQuery(
                 "SELECT user "
                 + "FROM UsersEntity user "
-                + "WHERE user.name = :value1")
-                .setParameter("value1", name).getSingleResult();
+                + "WHERE user.name = :name")
+                .setParameter("name", name).getSingleResult();
         } catch (NoResultException e) {
             return null;
         }
     }
 
+    @Transactional
+    @Override
+    public ArrayList<UsersEntity> searchByName(String name) {
+        try {
+            return (ArrayList<UsersEntity>) this.em.createQuery(
+                "SELECT user "
+                + "FROM UsersEntity user "
+                + "WHERE user.name LIKE :name")
+                .setParameter("name", name).getResultList();
+        } catch (NoResultException e) {
+            return null;
+        }
+    }
+    
     public EntityManager getEm() { return em; }
     public void setEm(EntityManager em) { this.em = em; }
 }

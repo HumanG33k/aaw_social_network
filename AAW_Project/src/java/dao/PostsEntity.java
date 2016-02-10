@@ -28,16 +28,16 @@ public class PostsEntity implements Serializable {
     @Column
     private String content;
     @Column
-    private Long userId;
+    private Long senderUserId;
     @Column
-    private Long wallId;
+    private Long targetUserId;
 
     public PostsEntity() {}
 
-    public PostsEntity(String content, Long userId, Long wallId) {
+    public PostsEntity(String content, Long senderUserId, Long targetUserId) {
         this.content = content;
-        this.userId = userId;
-        this.wallId = wallId;
+        this.senderUserId = senderUserId;
+        this.targetUserId = targetUserId;
     }
 
     @Override
@@ -70,8 +70,8 @@ public class PostsEntity implements Serializable {
     public void setId(Long id) { this.id = id; }
     public String getContent() { return content; }
     public void setContent(String content) { this.content = content; }
-    public Long getUserId() { return userId; }
-    public void setUserId(Long userId) { this.userId = userId; }
-    public Long getWallId() { return wallId; }
-    public void setWallId(Long wallId) { this.wallId = wallId; }
+    public Long getSenderUserId() { return senderUserId; }
+    public void setSenderUserId(Long senderUserId) { this.senderUserId = senderUserId; }
+    public Long getTargetUserId() { return targetUserId; }
+    public void setTargetUserId(Long targetUserId) { this.targetUserId = targetUserId; }
 }

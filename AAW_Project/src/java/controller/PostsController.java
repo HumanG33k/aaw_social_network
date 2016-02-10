@@ -30,11 +30,12 @@ public class PostsController {
     @RequestMapping(value="home", method=RequestMethod.POST, params="postContent")
     protected ModelAndView handleAddPost(HttpServletRequest request, HttpServletResponse response) throws Exception {
         String content = request.getParameter("postContent");
-        HttpSession session = request.getSession();
-        Long userId = (Long)session.getAttribute("userId");
-        Long wallId = 0L; // TODO
-
-        this.postsService.add(content, userId, wallId);
+        
+        if(!content.isEmpty()) {
+            HttpSession session = request.getSession();
+            Long userId = (Long)session.getAttribute("userId");
+            this.postsService.add(content, userId, userId);
+        }
         
         return new ModelAndView("home");
     }

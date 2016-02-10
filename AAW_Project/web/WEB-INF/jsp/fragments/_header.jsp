@@ -15,16 +15,18 @@
             <ul class="dropdown menu" data-dropdown-menu>
                 <li class="menu-text">XYT-7</li>
                 <li><a href="<%=request.getContextPath() %>/home.htm">Home</a></li>
-                <li><a href="<%=request.getContextPath() %>/profile.htm">Profile</a></li>
                 <li><a href="<%=request.getContextPath() %>/friends.htm">Friends</a></li>
+                <li><a href="<%=request.getContextPath() %>/profile.htm">Profile</a></li>
                 <li><a href="<%=request.getContextPath() %>/files.htm">Files</a></li>
             </ul>
         </div>
             
         <div class="top-bar-right">
             <ul class="menu">
-                <li><input type="search" placeholder="Search"></li>
-                <li><a class="button" href="<%=request.getContextPath() %>/search.htm">Search</a></li>
+                <li><form method="post" action="search.htm">
+                    <li><input type="search" placeholder="Search" name="searchName"></li>
+                    <li><button class="button" type="submit">Search</button></li>
+                </form></li>
                 <li><a class="button" href="<%=request.getContextPath() %>/index.htm">Sign out</a></li>
             </ul>
         </div>
