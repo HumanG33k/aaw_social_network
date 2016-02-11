@@ -1,3 +1,4 @@
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
     "http://www.w3.org/TR/html4/loose.dtd">
@@ -40,26 +41,25 @@
                 </form>
             </div>
         </div>
-
+        <hr/>
         <div class="rows ">
             <div class="row small-uncollapse large-collapse">
-
-                <% for (int i = 0; i < 10; i += 1) {%>
-                <article class="column media-object">
-                    <div class="media-object-section left">
-                        <div class="thumbnail ">
-                            <img src= "resources/img/profile.jpg" class="profile_picture">
+                <c:forEach var="post" items="${postsSenders.keySet()}">
+                    <article class="column media-object">
+                        <div class="media-object-section left">
+                            <div class="thumbnail">
+                                <img src= "resources/img/profile.jpg" class="profile_picture">
+                            </div>
                         </div>
-                    </div>
-                    <div class="media-object-section">
-                        <a href="<%=request.getContextPath()%>/profile.htm" class="margin-bottom-1 text-left">Jean-Michel</a>
-
-                        <div class="preview-glyphs">
-                            <a href="" class="step fi-x size-12 warning "></a>
+                        <div class="media-object-section">
+                            <a href="<%=request.getContextPath()%>/profile.htm" class="margin-bottom-1 text-left">${postsSenders.get(post).getName()}</a>
+                            <span class="label">${post.getDate()}</span>
+                            <div>
+                                ${post.getContent()}
+                            </div>
                         </div>
-                    </div>
-                </article>
-                <% }%>
+                    </article>
+                </c:forEach>
             </div>
         </div>
 

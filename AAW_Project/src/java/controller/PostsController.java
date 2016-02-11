@@ -6,6 +6,9 @@
 package controller;
 
 import dao.PostsEntity;
+import dao.UsersEntity;
+import java.util.ArrayList;
+import java.util.HashMap;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -25,7 +28,28 @@ import service.UsersService;
 public class PostsController {
     @Autowired
     PostsService postsService;
+    @Autowired
+    UsersService usersService;
 
+    // Method used to handle the creation of a new post
+    @RequestMapping(value="home", method=RequestMethod.GET)
+    protected ModelAndView handleHome(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        HttpSession session = request.getSession();
+        Long userId = ((UsersEntity)session.getAttribute("user")).getId();
+        
+        // Get all the posts sent by / to this user
+        ArrayList<PostsEntity> posts = this.postsService.searchByTargetId(userId);
+        HashMap<PostsEntity, UsersEntity> postsSenders = new HashMap<>();
+        for(PostsEntity post : posts) {
+            UsersEntity sender = this.usersService.find(post.getSenderId());
+            postsSenders.put(post, sender);
+        }
+        ModelAndView mv = new ModelAndView("home");
+        mv.addObject("postsSenders", postsSenders);
+        
+        return mv;
+    }
+    
     // Method used to handle the creation of a new post
     @RequestMapping(value="home", method=RequestMethod.POST, params="postContent")
     protected ModelAndView handleAddPost(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -33,10 +57,10 @@ public class PostsController {
         
         if(!content.isEmpty()) {
             HttpSession session = request.getSession();
-            Long userId = (Long)session.getAttribute("userId");
+            Long userId = ((UsersEntity)session.getAttribute("user")).getId();
             this.postsService.add(content, userId, userId);
         }
         
-        return new ModelAndView("home");
+        return handleHome(request, response);
     }
 }

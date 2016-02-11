@@ -37,6 +37,11 @@ public class UsersServiceImpl implements UsersService {
     }
 
     @Override
+    public UsersEntity find(Long id) {
+        return this.usersDao.find(id);
+    }
+    
+    @Override
     public UsersEntity findByName(String name) {
         return this.usersDao.findByName(name);
     }

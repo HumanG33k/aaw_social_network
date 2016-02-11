@@ -16,6 +16,7 @@ import java.util.ArrayList;
 public interface UsersService {
     public boolean add(String name, String email, String password);
     public boolean remove(String name);
+    public UsersEntity find(Long id);
     public UsersEntity findByName(String name);
     public ArrayList<UsersEntity> searchByName(String name);
     public SignInResult checkSignIn(String name, String password);

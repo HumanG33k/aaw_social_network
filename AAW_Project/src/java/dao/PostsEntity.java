@@ -6,6 +6,7 @@
 package dao;
 
 import java.io.Serializable;
+import java.util.Date;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -28,16 +29,19 @@ public class PostsEntity implements Serializable {
     @Column
     private String content;
     @Column
-    private Long senderUserId;
+    private Long senderId;
     @Column
     private Long targetUserId;
+    @Column
+    private Date date;
 
     public PostsEntity() {}
 
-    public PostsEntity(String content, Long senderUserId, Long targetUserId) {
+    public PostsEntity(String content, Long senderId, Long targetUserId) {
         this.content = content;
-        this.senderUserId = senderUserId;
+        this.senderId = senderId;
         this.targetUserId = targetUserId;
+        this.date = new Date();
     }
 
     @Override
@@ -70,8 +74,10 @@ public class PostsEntity implements Serializable {
     public void setId(Long id) { this.id = id; }
     public String getContent() { return content; }
     public void setContent(String content) { this.content = content; }
-    public Long getSenderUserId() { return senderUserId; }
-    public void setSenderUserId(Long senderUserId) { this.senderUserId = senderUserId; }
+    public Long getSenderId() { return senderId; }
+    public void setSenderId(Long senderId) { this.senderId = senderId; }
     public Long getTargetUserId() { return targetUserId; }
     public void setTargetUserId(Long targetUserId) { this.targetUserId = targetUserId; }
+    public Date getDate() { return this.date; }
+    public void setDate(Date date) { this.date = date; }
 }

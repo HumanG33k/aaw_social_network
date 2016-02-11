@@ -5,10 +5,15 @@
  */
 package service;
 
+import dao.PostsEntity;
+import dao.UsersEntity;
+import java.util.ArrayList;
+
 /**
  *
  * @author Nathanael Villemin
  */
 public interface PostsService {
-    public void add(String content, Long userId, Long wallId);
+    public void add(String content, Long senderId, Long wallId);
+    public ArrayList<PostsEntity> searchByTargetId(Long targetId);
 }

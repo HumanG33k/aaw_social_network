@@ -7,6 +7,8 @@ package service;
 
 import dao.PostsDao;
 import dao.PostsEntity;
+import dao.UsersEntity;
+import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,8 +22,13 @@ public class PostsServiceImpl implements PostsService {
     PostsDao postsDao;
 
     @Override
-    public void add(String content, Long userId, Long wallId) {
-        PostsEntity post = new PostsEntity(content, userId, wallId);
+    public void add(String content, Long senderId, Long wallId) {
+        PostsEntity post = new PostsEntity(content, senderId, wallId);
         this.postsDao.save(post);
+    }
+    
+    @Override
+    public ArrayList<PostsEntity> searchByTargetId(Long targetId) {
+        return this.postsDao.searchByTargetId(targetId);
     }
 }

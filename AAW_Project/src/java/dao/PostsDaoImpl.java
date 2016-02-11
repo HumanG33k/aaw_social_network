@@ -5,7 +5,9 @@
  */
 package dao;
 
+import java.util.ArrayList;
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.transaction.Transactional;
 import org.springframework.stereotype.Repository;
@@ -44,6 +46,21 @@ public class PostsDaoImpl implements PostsDao {
     @Override
     public PostsEntity find(Long id) {
         return (PostsEntity) this.em.find(PostsEntity.class, id);
+    }
+    
+    @Transactional
+    @Override
+    public ArrayList<PostsEntity> searchByTargetId(Long targetId) {
+        try {
+            return (ArrayList<PostsEntity>) this.em.createQuery(
+                "SELECT post "
+                + "FROM PostsEntity post "
+                + "WHERE post.targetUserId = :targetId "
+                + "ORDER BY post.date DESC")
+                .setParameter("targetId", targetId).getResultList();
+        } catch (NoResultException e) {
+            return null;
+        }
     }
     
     public EntityManager getEm() { return em; }

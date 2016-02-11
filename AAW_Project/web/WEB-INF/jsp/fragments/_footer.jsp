@@ -4,7 +4,7 @@
     Author     : nvillemi
 --%>
 
-<hr></hr>
+<hr/>
 <footer class="text-center">
     Copyright © 2016 Social Network XYT-7
 </footer>

@@ -70,8 +70,7 @@ public class UsersController {
             
             // Creating the session of the user
             HttpSession session = request.getSession(true);
-            session.setAttribute("name", name);
-            session.setAttribute("userId", this.usersService.findByName(name).getId());
+            session.setAttribute("user", this.usersService.findByName(name));
             session.setMaxInactiveInterval(600); // Inactive after 10 minutes
         }
         
@@ -90,6 +89,7 @@ public class UsersController {
     // Method used to handle the sign up of a new user on the index page
     @RequestMapping(value="friends", method=RequestMethod.GET)
     protected ModelAndView handleFriends(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        // TODO : Get friends of this user
         return new ModelAndView("friends");
     }
     

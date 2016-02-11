@@ -5,6 +5,8 @@
  */
 package dao;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Nathanael Villemin
@@ -14,4 +16,5 @@ public interface PostsDao {
     public void update(PostsEntity post);
     public void delete(PostsEntity post);
     public PostsEntity find(Long id);
+    public ArrayList<PostsEntity> searchByTargetId(Long targetId);
 }
