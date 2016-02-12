@@ -20,4 +20,6 @@ public interface UsersService {
     public UsersEntity findByName(String name);
     public ArrayList<UsersEntity> searchByName(String name);
     public SignInResult checkSignIn(String name, String password);
+    public boolean checkFriendship(UsersEntity user, UsersEntity friend);
+    public boolean addFriendship(UsersEntity user, UsersEntity friend);
 }

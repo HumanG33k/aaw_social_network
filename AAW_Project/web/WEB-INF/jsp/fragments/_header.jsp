@@ -5,30 +5,25 @@
 --%>
 
 <header>        
-    <div class="title-bar" data-responsive-toggle="example-menu" data-hide-for="medium">
-        <button class="menu-icon" type="button" data-toggle></button>
-        <div class="title-bar-title">Menu</div>
-    </div>
-
-    <div class="top-bar" id="example-menu">
+    <div class="top-bar">
         <div class="top-bar-left">
-            <ul class="dropdown menu" data-dropdown-menu>
-                <li class="menu-text">XYT-7</li>
-                <li><a href="<%=request.getContextPath() %>/home.htm">Home</a></li>
-                <li><a href="<%=request.getContextPath() %>/friends.htm">Friends</a></li>
-                <li><a href="<%=request.getContextPath() %>/profile.htm">Profile</a></li>
-                <li><a href="<%=request.getContextPath() %>/files.htm">Files</a></li>
-            </ul>
-        </div>
-            
-        <div class="top-bar-right">
             <ul class="menu">
-                <li><form method="post" action="search.htm">
-                    <li><input type="search" placeholder="Search" name="searchName"></li>
-                    <li><button class="button" type="submit">Search</button></li>
-                </form></li>
-                <li><a class="button" href="<%=request.getContextPath() %>/index.htm">Sign out</a></li>
+                <li class="menu-text">AAW</li>
+                <li><a href="<%=request.getContextPath()%>/home.htm">Home</a></li>
+                <li><a href="<%=request.getContextPath()%>/friends.htm">Friends</a></li>
+                <li><a href="<%=request.getContextPath()%>/${user.getId()}/profile.htm">Profile</a></li>
+                <li><a href="<%=request.getContextPath()%>/files.htm">Files</a></li>
             </ul>
         </div>
+           
+        <form method="post" action="search.htm">
+            <div class="top-bar-right">
+                <ul class="menu">
+                    <li><input type="search" placeholder="Search" name="searchName"></li>
+                    <li><button type="submit" class="button">Search</button></li>
+                    <li><a class="button alert" href="<%=request.getContextPath()%>/index.htm">Sign out</a></li>
+                </ul>
+            </div>
+        </form>
     </div>
 </header>

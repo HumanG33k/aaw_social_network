@@ -10,11 +10,10 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
@@ -37,12 +36,9 @@ public class UsersEntity implements Serializable {
     private String email;
     @Column
     private String password;
-    @JoinTable(
-        name="users_users",
-        joinColumns=@JoinColumn(name="user_id"),
-        inverseJoinColumns=@JoinColumn(name="user_friend_id")
-    )
-    @ManyToMany
+    @Column
+    private String information;
+    @ManyToMany(fetch = FetchType.EAGER)
     private List<UsersEntity> friends = new ArrayList<>();
 
     public UsersEntity() {}
@@ -51,8 +47,17 @@ public class UsersEntity implements Serializable {
         this.name = name;
         this.email = email;
         this.password = password;
+        this.information = "Nothing yet!";
     }
 
+    public boolean addFriend(UsersEntity friend) {
+        if(!this.friends.contains(friend)) {
+            this.friends.add(friend);
+            return true;
+        }
+        return false;
+    }
+    
     @Override
     public int hashCode() {
         int hash = 0;
@@ -83,6 +88,8 @@ public class UsersEntity implements Serializable {
     public void setEmail(String email) { this.email = email; }
     public String getPassword() { return password; }
     public void setPassword(String password) { this.password = password; }
+    public String getInformation() { return information; }
+    public void setInformation(String information) { this.information = information; }
     public List<UsersEntity> getFriends() { return friends; }
     public void setFriends(List<UsersEntity> friends) { this.friends = friends; }
 }

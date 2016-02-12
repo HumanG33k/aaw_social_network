@@ -4,12 +4,11 @@
 
 <html>
     <head>
-        <link type="text/css" rel="stylesheet" href="resources/css/foundation.css">
-        <link type="text/css" rel="stylesheet" href="resources/css/app.css">
-        <link type="text/css" rel="stylesheet" href="resources/icon/foundation-icons.css">
-
-        <script src="resources/js/jquery.js"></script>
-        <script src="resources/js/foundation.js"></script>
+        <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/foundation.css">
+        <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/app.css">
+        <link type="text/css" rel="stylesheet" href="${pageContext.request.contextPath}/resources/icon/foundation-icons.css">
+        <script src="${pageContext.request.contextPath}/resources/js/jquery.js"></script>
+        <script src="${pageContext.request.contextPath}/resources/js/foundation.js"></script>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Index - Social Network Project</title>
     </head>

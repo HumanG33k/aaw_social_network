@@ -18,4 +18,6 @@ public interface UsersDao {
     public UsersEntity find(Long id);
     public UsersEntity findByName(String name);
     public ArrayList<UsersEntity> searchByName(String name);
+    public boolean checkFriendship(UsersEntity user, UsersEntity friend);
+    public boolean addFriendship(UsersEntity user, UsersEntity friend);
 }

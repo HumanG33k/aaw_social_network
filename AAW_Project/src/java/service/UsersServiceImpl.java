@@ -62,4 +62,14 @@ public class UsersServiceImpl implements UsersService {
         }
         return SignInResult.SUCCESS;
     }
+    
+    @Override
+    public boolean checkFriendship(UsersEntity user, UsersEntity friend) {
+        return this.usersDao.checkFriendship(user, friend);
+    }
+    
+    @Override
+    public boolean addFriendship(UsersEntity user, UsersEntity friend) {
+        return this.usersDao.addFriendship(user, friend);
+    }
 }

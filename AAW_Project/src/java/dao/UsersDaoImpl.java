@@ -76,6 +76,18 @@ public class UsersDaoImpl implements UsersDao {
         }
     }
     
+    @Transactional
+    @Override
+    public boolean checkFriendship(UsersEntity user, UsersEntity friend) {
+        return user.getFriends().contains(friend);
+    }
+    
+    @Transactional
+    @Override
+    public boolean addFriendship(UsersEntity user, UsersEntity friend) {
+        return user.addFriend(friend);
+    }
+    
     public EntityManager getEm() { return em; }
     public void setEm(EntityManager em) { this.em = em; }
 }

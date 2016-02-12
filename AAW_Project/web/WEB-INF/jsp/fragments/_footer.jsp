@@ -6,7 +6,7 @@
 
 <hr/>
 <footer class="text-center">
-    Copyright © 2016 Social Network XYT-7
+    Copyright © 2016 Social Network AAW
 </footer>
 <script>
     $(document).foundation();

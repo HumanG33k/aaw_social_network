@@ -4,10 +4,10 @@ import common.Enums.SignInResult;
 import dao.UsersEntity;
 import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -24,7 +24,7 @@ public class UsersController {
 
     // Method used to handle the sign up of a new user on the index page
     @RequestMapping(value="index", method=RequestMethod.POST)
-    protected ModelAndView handleSignUp(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    protected ModelAndView handleSignUp(HttpServletRequest request) {
         // Get the values that the user sent
         String name = request.getParameter("nameSignUp");
         String email = request.getParameter("emailSignUp");
@@ -50,7 +50,7 @@ public class UsersController {
     
     // Method used to handle the sign in of an existing user from the index page
     @RequestMapping(value="home", method=RequestMethod.POST, params={"nameSignIn", "passwordSignIn"})
-    protected ModelAndView handleSignIn(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    protected ModelAndView handleSignIn(HttpServletRequest request) {
         // Get the values that the user sent
         String name = request.getParameter("nameSignIn");
         String password = request.getParameter("passwordSignIn");
@@ -77,30 +77,62 @@ public class UsersController {
         return mv;
     }
     
-    // Method used to handle the sign up of a new user on the index page
+    // Method used to handle the sign out of a user
     @RequestMapping(value="index", method=RequestMethod.GET)
-    protected ModelAndView handleSignOut(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    protected ModelAndView handleSignOut(HttpServletRequest request) {
         request.getSession().invalidate();
         ModelAndView mv = new ModelAndView("index");
         mv.addObject("indexMessage", "Please sign up or sign in if you already have an account.");
         return mv;
     }
     
-    // Method used to handle the sign up of a new user on the index page
+    // Method used to show the user friends
     @RequestMapping(value="friends", method=RequestMethod.GET)
-    protected ModelAndView handleFriends(HttpServletRequest request, HttpServletResponse response) throws Exception {
-        // TODO : Get friends of this user
-        return new ModelAndView("friends");
+    protected ModelAndView handleFriends(HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        if(session == null || !request.isRequestedSessionIdValid()) {
+            return new ModelAndView("index");
+        }
+        
+        UsersEntity user = (UsersEntity) session.getAttribute("user");
+        ModelAndView mv = new ModelAndView("friends");
+        mv.addObject("friends", user.getFriends());
+        
+        return mv;
     }
     
     // Method used to handle the search of users
     @RequestMapping(value="search", method=RequestMethod.POST)
-    protected ModelAndView handleSearch(HttpServletRequest request, HttpServletResponse response) throws Exception {
+    protected ModelAndView handleSearch(HttpServletRequest request){
+        HttpSession session = request.getSession();
+        if(session == null || !request.isRequestedSessionIdValid()) {
+            return new ModelAndView("index");
+        }
+        
         String searchName = request.getParameter("searchName");
         ArrayList<UsersEntity> users = this.usersService.searchByName(searchName);
         ModelAndView mv = new ModelAndView("search");
         mv.addObject("users", users);
 
+        return mv;
+    }
+    
+    // Method used to show the profile of a user
+    @RequestMapping(value="{userId}/profile", method=RequestMethod.GET)
+    protected ModelAndView handleProfile(HttpServletRequest request, @PathVariable Long userId) {
+        HttpSession session = request.getSession();
+        if(session == null || !request.isRequestedSessionIdValid()) {
+            return new ModelAndView("index");
+        }
+        
+        UsersEntity user = (UsersEntity) session.getAttribute("user");
+        UsersEntity targetUser = this.usersService.find(userId);
+        
+        ModelAndView mv = new ModelAndView("profile");
+        mv.addObject("user", targetUser);
+        mv.addObject("myProfile", user.equals(targetUser));
+        mv.addObject("myFriend", this.usersService.checkFriendship(user, targetUser));
+        
         return mv;
     }
 }
