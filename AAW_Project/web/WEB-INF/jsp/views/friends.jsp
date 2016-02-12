@@ -22,18 +22,28 @@
         </div>
 
         <div class="row small-up-1 medium-up-2 large-up-4">
-            <c:forEach var="friend" items="${friends}">
-                <div class="column media-object">
-                    <div class="media-object-section left">
-                        <div class="thumbnail ">
-                            <img src= "resources/img/profile.jpg" class="profile_picture">
+            <c:choose>
+                <c:when test="${friends.size() == 0}">
+                    <div class="text-center">
+                        You don't have any friends!
+                    </div>
+                </c:when>
+                <c:otherwise>
+                    <c:forEach var="friend" items="${friends}">
+                        <div class="column media-object">
+                            <div class="media-object-section left">
+                                <div class="thumbnail ">
+                                    <img src= "resources/img/profile.jpg" class="profile_picture">
+                                </div>
+                            </div>
+                            <div class="media-object-section">
+                                <a href="<%=request.getContextPath()%>/${friend.getId()}/profile.htm" class="margin-bottom-1 text-left">${friend.getName()}</a>
+                            </div>
                         </div>
-                    </div>
-                    <div class="media-object-section">
-                        <a href="<%=request.getContextPath()%>/${friend.getId()}/profile.htm" class="margin-bottom-1 text-left">${friend.getName()}</a>
-                    </div>
-                </div>
-            </c:forEach>
+                    </c:forEach>
+                </c:otherwise>
+            </c:choose>
+            
         </div>
 
         <%@ include file="../fragments/_footer.jsp" %>

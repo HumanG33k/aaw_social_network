@@ -32,29 +32,24 @@ public class PostsController {
 
     // Method used to show all the posts related to the user
     @RequestMapping(value="home", method=RequestMethod.GET)
-    protected ModelAndView handleHome(HttpServletRequest request) {
+    public ModelAndView handleHome(HttpServletRequest request) {
         HttpSession session = request.getSession();
         if(session == null || !request.isRequestedSessionIdValid()) {
             return new ModelAndView("index");
         }
-        Long userId = ((UsersEntity)session.getAttribute("user")).getId();
-        
+
         // Get all the posts sent by / to this user
-        ArrayList<PostsEntity> posts = this.postsService.searchByTargetId(userId);
-        HashMap<PostsEntity, UsersEntity> postsSenders = new HashMap<>();
-        for(PostsEntity post : posts) {
-            UsersEntity sender = this.usersService.find(post.getSenderId());
-            postsSenders.put(post, sender);
-        }
+        UsersEntity user = (UsersEntity)session.getAttribute("user");
+        ArrayList<PostsEntity> posts = this.postsService.searchByTarget(user);
         ModelAndView mv = new ModelAndView("home");
-        mv.addObject("postsSenders", postsSenders);
+        mv.addObject("posts", posts);
         
         return mv;
     }
     
     // Method used to handle the creation of a new post
-    @RequestMapping(value="home", method=RequestMethod.POST, params="postContent")
-    protected ModelAndView handleAddPost(HttpServletRequest request) {
+    @RequestMapping(value="createPost", method=RequestMethod.POST, params="postContent")
+    public ModelAndView handleAddPost(HttpServletRequest request) {
         HttpSession session = request.getSession();
         if(session == null || !request.isRequestedSessionIdValid()) {
             return new ModelAndView("index");
@@ -63,8 +58,8 @@ public class PostsController {
         String content = request.getParameter("postContent");
         
         if(!content.isEmpty()) {
-            Long userId = ((UsersEntity)session.getAttribute("user")).getId();
-            this.postsService.add(content, userId, userId);
+            UsersEntity sender = (UsersEntity)session.getAttribute("user");
+            this.postsService.add(content, sender, sender);
         }
         
         return handleHome(request);

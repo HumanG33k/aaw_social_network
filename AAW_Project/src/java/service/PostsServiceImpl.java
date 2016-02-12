@@ -22,13 +22,13 @@ public class PostsServiceImpl implements PostsService {
     PostsDao postsDao;
 
     @Override
-    public void add(String content, Long senderId, Long wallId) {
-        PostsEntity post = new PostsEntity(content, senderId, wallId);
+    public void add(String content, UsersEntity sender, UsersEntity target) {
+        PostsEntity post = new PostsEntity(content, sender, target);
         this.postsDao.save(post);
     }
     
     @Override
-    public ArrayList<PostsEntity> searchByTargetId(Long targetId) {
-        return this.postsDao.searchByTargetId(targetId);
+    public ArrayList<PostsEntity> searchByTarget(UsersEntity target) {
+        return this.postsDao.searchByTarget(target);
     }
 }

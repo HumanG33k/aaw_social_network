@@ -19,7 +19,7 @@
         
         <div class="row medium-uncollapse large-collapse">
             <div class="medium-4 columns container-hover">
-                <form method="post" action="index.htm">
+                <form method="post" action="${pageContext.request.contextPath}/signUp.htm">
                     <label>Display name
                         <input type="text" name="nameSignUp">
                     </label>
@@ -45,7 +45,7 @@
             </div>
 
             <div class="medium-4 columns container-hover">
-                <form method="post" action="home.htm">
+                <form method="post" action="${pageContext.request.contextPath}/signIn.htm">
                     <label>Display name
                         <input type="text" name="nameSignIn">
                     </label>

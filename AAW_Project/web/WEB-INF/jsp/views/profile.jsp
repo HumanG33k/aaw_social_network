@@ -18,7 +18,7 @@
         <%@ include file="../fragments/_header.jsp" %>
         
         <div class="primary callout text-center size-36">
-            <p>${user.getName()} Profile, myProfile = ${myProfile}, myFriend = ${myFriend}</p>
+            <p>${user.getName()} profile</p>
         </div>
        
         <form method="post" action="<%=request.getContextPath()%>/${user.getId()}/profile.htm">

@@ -5,8 +5,8 @@
 --%>
 
 <hr/>
-<footer class="text-center">
-    Copyright © 2016 Social Network AAW
+<footer class="text-center size-12">
+    <i>Copyright © 2016 Social Network AAW</i>
 </footer>
 <script>
     $(document).foundation();

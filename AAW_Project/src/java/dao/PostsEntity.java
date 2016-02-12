@@ -12,7 +12,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
 
 /**
  *
@@ -28,20 +31,23 @@ public class PostsEntity implements Serializable {
     private Long id;
     @Column
     private String content;
+    @ManyToOne
+    @JoinColumn(name = "sender")
+    private UsersEntity sender;
+    @ManyToOne
+    @JoinColumn(name = "target")
+    private UsersEntity target;
     @Column
-    private Long senderId;
-    @Column
-    private Long targetUserId;
-    @Column
-    private Date date;
+    @Temporal(javax.persistence.TemporalType.TIMESTAMP)
+    private Date datePost;
 
     public PostsEntity() {}
 
-    public PostsEntity(String content, Long senderId, Long targetUserId) {
+    public PostsEntity(String content, UsersEntity sender, UsersEntity target) {
         this.content = content;
-        this.senderId = senderId;
-        this.targetUserId = targetUserId;
-        this.date = new Date();
+        this.sender = sender;
+        this.target = target;
+        this.datePost = new Date();
     }
 
     @Override
@@ -74,10 +80,10 @@ public class PostsEntity implements Serializable {
     public void setId(Long id) { this.id = id; }
     public String getContent() { return content; }
     public void setContent(String content) { this.content = content; }
-    public Long getSenderId() { return senderId; }
-    public void setSenderId(Long senderId) { this.senderId = senderId; }
-    public Long getTargetUserId() { return targetUserId; }
-    public void setTargetUserId(Long targetUserId) { this.targetUserId = targetUserId; }
-    public Date getDate() { return this.date; }
-    public void setDate(Date date) { this.date = date; }
+    public UsersEntity getSender() { return sender; }
+    public void setSender(UsersEntity sender) { this.sender = sender; }
+    public UsersEntity getTarget() { return target; }
+    public void setTarget(UsersEntity target) { this.target = target; }
+    public Date getDate() { return this.datePost; }
+    public void setDate(Date datePost) { this.datePost = datePost; }
 }

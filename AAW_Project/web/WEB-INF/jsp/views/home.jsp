@@ -27,7 +27,7 @@
                     <img src= "resources/img/profile.jpg" >
                 </div>
 
-                <form method="post" action="home.htm">
+                <form method="post" action="${pageContext.request.contextPath}/createPost.htm">
                     <div class="column medium-11">
                         <label>
                             <input type="text" placeholder="Express yourself" name="postContent">
@@ -35,7 +35,7 @@
                     </div>
 
                     <div class="column">
-                        <button type="submit" class="success button expanded">Send a message</button>
+                        <button type="submit" class="button expanded">Send a message to your friends</button>
                     </div>
                 </form>
             </div>
@@ -43,7 +43,7 @@
         <hr/>
         <div class="rows ">
             <div class="row small-uncollapse large-collapse">
-                <c:forEach var="post" items="${postsSenders.keySet()}">
+                <c:forEach var="post" items="${posts}">
                     <article class="column media-object">
                         <div class="media-object-section left">
                             <div class="thumbnail">
@@ -51,8 +51,12 @@
                             </div>
                         </div>
                         <div class="media-object-section">
-                            <a href="<%=request.getContextPath()%>/${postsSenders.get(post).getId()}/profile.htm">${postsSenders.get(post).getName()}</a>
-                            <span class="label">${post.getDate()}</span>
+                            <a class="size-21" href="<%=request.getContextPath()%>/${post.getSender().getId()}/profile.htm">${post.getSender().getName()}</a>
+                            <c:if test="${post.getSender() != post.getTarget()}">
+                                => 
+                                <a href="<%=request.getContextPath()%>/${post.getTarget().getId()}/profile.htm">${post.getTarget().getName()}</a>
+                            </c:if>
+                            <span class="size-12">(${post.getDate()})</span>
                             <div>
                                 ${post.getContent()}
                             </div>

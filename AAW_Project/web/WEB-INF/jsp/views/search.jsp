@@ -32,7 +32,7 @@
                         </div>
                     </div>
                     <div class="media-object-section">
-                        <a href="<%=request.getContextPath()%>/${user.getId()}/profile.htm" class="margin-bottom-1 text-left">${user.getName()}</a>
+                        <a class="size-36" href="<%=request.getContextPath()%>/${user.getId()}/profile.htm" class="margin-bottom-1 text-left">${user.getName()}</a>
                     </div>
                 </div>
             </c:forEach>

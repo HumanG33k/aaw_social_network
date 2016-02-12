@@ -16,5 +16,5 @@ public interface PostsDao {
     public void update(PostsEntity post);
     public void delete(PostsEntity post);
     public PostsEntity find(Long id);
-    public ArrayList<PostsEntity> searchByTargetId(Long targetId);
+    public ArrayList<PostsEntity> searchByTarget(UsersEntity target);
 }

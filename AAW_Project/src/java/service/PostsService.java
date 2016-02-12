@@ -14,6 +14,6 @@ import java.util.ArrayList;
  * @author Nathanael Villemin
  */
 public interface PostsService {
-    public void add(String content, Long senderId, Long wallId);
-    public ArrayList<PostsEntity> searchByTargetId(Long targetId);
+    public void add(String content, UsersEntity sender, UsersEntity target);
+    public ArrayList<PostsEntity> searchByTarget(UsersEntity target);
 }

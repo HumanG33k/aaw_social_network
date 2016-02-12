@@ -16,12 +16,12 @@
             </ul>
         </div>
            
-        <form method="post" action="search.htm">
+        <form method="post" action="<%=request.getContextPath()%>/search.htm">
             <div class="top-bar-right">
                 <ul class="menu">
                     <li><input type="search" placeholder="Search" name="searchName"></li>
                     <li><button type="submit" class="button">Search</button></li>
-                    <li><a class="button alert" href="<%=request.getContextPath()%>/index.htm">Sign out</a></li>
+                    <li><a class="button alert" href="<%=request.getContextPath()%>/signOut.htm">Sign out</a></li>
                 </ul>
             </div>
         </form>

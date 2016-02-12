@@ -50,14 +50,13 @@ public class PostsDaoImpl implements PostsDao {
     
     @Transactional
     @Override
-    public ArrayList<PostsEntity> searchByTargetId(Long targetId) {
+    public ArrayList<PostsEntity> searchByTarget(UsersEntity target) {
         try {
             return (ArrayList<PostsEntity>) this.em.createQuery(
                 "SELECT post "
                 + "FROM PostsEntity post "
-                + "WHERE post.targetUserId = :targetId "
-                + "ORDER BY post.date DESC")
-                .setParameter("targetId", targetId).getResultList();
+                + "WHERE post.target = :target")
+                .setParameter("target", target).getResultList();
         } catch (NoResultException e) {
             return null;
         }
