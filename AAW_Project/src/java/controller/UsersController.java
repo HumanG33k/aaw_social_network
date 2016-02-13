@@ -115,6 +115,7 @@ public class UsersController {
         ModelAndView mv = new ModelAndView("friends");
         mv.addObject("currentUser", user);
         mv.addObject("friends", user.getFriends());
+        mv.addObject("nbNotifs", this.notifsService.searchByTarget(user).size());
         
         return mv;
     }
@@ -135,6 +136,7 @@ public class UsersController {
         UsersEntity user = (UsersEntity) session.getAttribute("user");
         mv.addObject("currentUser", user);
         mv.addObject("users", users);
+        mv.addObject("nbNotifs", this.notifsService.searchByTarget(user).size());
 
         return mv;
     }
@@ -155,6 +157,7 @@ public class UsersController {
         ModelAndView mv = new ModelAndView("profile");
         mv.addObject("currentUser", user);
         mv.addObject("user", targetUser);
+        mv.addObject("nbNotifs", this.notifsService.searchByTarget(user).size());
         boolean isMyProfile = user.equals(targetUser);
         mv.addObject("myProfile", isMyProfile);  
         boolean isMyFriend = this.usersService.checkFriendship(user, targetUser);

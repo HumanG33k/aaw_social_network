@@ -1,7 +1,7 @@
 <div class="medium-9 medium-centered columns">
     <div class="row">
         <div class="column text-center medium-1">
-            <img src= "${pageContext.request.contextPath}/resources/img/profile.jpg" >
+            <img src= "${pageContext.request.contextPath}/resources/img/profile.png" >
         </div>
 
         <form method="post" action="${pageContext.request.contextPath}/${user.getId()}/createPost.htm">
@@ -31,7 +31,7 @@
                     <article class="column media-object">
                         <div class="media-object-section left">
                             <div class="thumbnail">
-                                <img src= "${pageContext.request.contextPath}/resources/img/profile.jpg" class="profile_picture">
+                                <img src= "${pageContext.request.contextPath}/resources/img/profile.png" class="profile_picture">
                             </div>
                         </div>
                         <div class="media-object-section">
