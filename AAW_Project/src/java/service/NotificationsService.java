@@ -18,4 +18,5 @@ public interface NotificationsService {
     public boolean remove(NotificationsEntity notif);
     public NotificationsEntity find(Long id);
     public ArrayList<NotificationsEntity> searchByTarget(UsersEntity target);
+    public NotificationsEntity searchBySenderTarget(UsersEntity sender, UsersEntity target);
 }

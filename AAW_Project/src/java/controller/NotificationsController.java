@@ -38,6 +38,8 @@ public class NotificationsController {
             return new ModelAndView("index");
         }
 
+        session.setAttribute("currentPage", "/notifications");
+        
         // Get all the notifications sent to this user
         UsersEntity user = (UsersEntity)session.getAttribute("user");
         ArrayList<NotificationsEntity> notifs = this.notifsService.searchByTarget(user);
@@ -79,9 +81,25 @@ public class NotificationsController {
         }
         this.notifsService.remove(notif);
 
-        ModelAndView mv = new ModelAndView("redirect:/notifications.htm");
+        ModelAndView mv = new ModelAndView("redirect:" + session.getAttribute("currentPage") + ".htm");
         mv.addObject("currentUser", (UsersEntity) session.getAttribute("user"));
         
         return mv;
+    }
+    
+    // Method used to deny a friend request
+    @RequestMapping(value="{notifId}/denyFriend", method=RequestMethod.GET)
+    public ModelAndView handleDenyFriend(HttpServletRequest request, @PathVariable Long notifId) {
+        HttpSession session = request.getSession();
+        if(session == null || !request.isRequestedSessionIdValid()) {
+            return new ModelAndView("index");
+        }
+
+        NotificationsEntity notif = this.notifsService.find(notifId);
+        if(notif != null) {
+            this.notifsService.remove(notif);
+        }
+        
+        return new ModelAndView("redirect:/notifications.htm");
     }
 }

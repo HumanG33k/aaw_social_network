@@ -39,6 +39,8 @@ public class PostsController {
             return new ModelAndView("index");
         }
 
+        session.setAttribute("currentPage", "/home");
+        
         // Get all the posts sent by / to this user
         UsersEntity user = (UsersEntity)session.getAttribute("user");
         ArrayList<PostsEntity> posts = this.postsService.searchByTarget(user);

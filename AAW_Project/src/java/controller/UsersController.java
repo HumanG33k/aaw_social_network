@@ -1,6 +1,7 @@
 package controller;
 
 import common.Enums.SignInResult;
+import dao.NotificationsEntity;
 import dao.UsersEntity;
 import java.util.ArrayList;
 import javax.servlet.http.HttpServletRequest;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import service.NotificationsService;
 import service.UsersService;
 
 /**
@@ -21,6 +23,8 @@ import service.UsersService;
 public class UsersController {
     @Autowired
     UsersService usersService;
+    @Autowired
+    NotificationsService notifsService;
 
     // Method used to display the index page
     @RequestMapping(value="index", method=RequestMethod.GET)
@@ -100,6 +104,8 @@ public class UsersController {
             return new ModelAndView("index");
         }
         
+        session.setAttribute("currentPage", "/friends");
+        
         UsersEntity user = (UsersEntity) session.getAttribute("user");
         ModelAndView mv = new ModelAndView("friends");
         mv.addObject("currentUser", user);
@@ -115,6 +121,8 @@ public class UsersController {
         if(session == null || !request.isRequestedSessionIdValid()) {
             return new ModelAndView("index");
         }
+        
+        session.setAttribute("currentPage", "/search");
         
         String searchName = request.getParameter("searchName");
         ArrayList<UsersEntity> users = this.usersService.searchByName(searchName);
@@ -134,15 +142,33 @@ public class UsersController {
             return new ModelAndView("index");
         }
         
+        session.setAttribute("currentPage", "profile");
+        
         UsersEntity user = (UsersEntity) session.getAttribute("user");
         UsersEntity targetUser = this.usersService.find(userId);
         
         ModelAndView mv = new ModelAndView("profile");
         mv.addObject("currentUser", user);
         mv.addObject("user", targetUser);
-        mv.addObject("myProfile", user.equals(targetUser));
-        mv.addObject("myFriend", this.usersService.checkFriendship(user, targetUser));
+        boolean isMyProfile = user.equals(targetUser);
+        mv.addObject("myProfile", isMyProfile);  
+        boolean isMyFriend = this.usersService.checkFriendship(user, targetUser);
+        mv.addObject("myFriend", isMyFriend);
         
+        if(!isMyProfile && !isMyFriend) {
+            NotificationsEntity sentRequest = this.notifsService.searchBySenderTarget(user, targetUser);
+            boolean requestSent = (sentRequest != null);
+            mv.addObject("requestSent", requestSent);
+            if(!requestSent) {
+                NotificationsEntity receivedRequest = this.notifsService.searchBySenderTarget(targetUser, user);
+                boolean requestReceived = (receivedRequest != null);
+                mv.addObject("requestReceived", requestReceived);
+                if(requestReceived) {
+                    mv.addObject("notifId", receivedRequest.getId());
+                }
+            }
+        }
+
         return mv;
     }
     
@@ -158,6 +184,24 @@ public class UsersController {
         String newInfo = request.getParameter("infoInput");
         if(!newInfo.isEmpty()) {
             this.usersService.updateInfo(user, newInfo);
+        }
+
+        return new ModelAndView("redirect:profile.htm");
+    }
+    
+    // Method used to change the user info
+    @RequestMapping(value="{userId}/removeFriend", method=RequestMethod.GET)
+    public ModelAndView handleRemoveFriend(HttpServletRequest request, @PathVariable Long userId) {
+        HttpSession session = request.getSession();
+        if(session == null || !request.isRequestedSessionIdValid()) {
+            return new ModelAndView("index");
+        }
+        
+        UsersEntity user = (UsersEntity) session.getAttribute("user");
+        UsersEntity targetUser = this.usersService.find(userId);
+        
+        if(this.usersService.checkFriendship(user, targetUser)) {
+            this.usersService.removeFriendship(user, targetUser);
         }
 
         return new ModelAndView("redirect:profile.htm");
