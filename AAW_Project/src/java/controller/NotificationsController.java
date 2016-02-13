@@ -46,6 +46,7 @@ public class NotificationsController {
         ModelAndView mv = new ModelAndView("notifications");
         mv.addObject("currentUser", user);
         mv.addObject("notifs", notifs);
+        mv.addObject("nbNotifs", notifs.size());
         
         return mv;
     }

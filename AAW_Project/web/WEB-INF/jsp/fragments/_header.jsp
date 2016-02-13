@@ -4,6 +4,7 @@
     Author     : nvillemi
 --%>
 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <header>        
     <div class="top-bar">
         <div class="top-bar-left">
@@ -13,7 +14,14 @@
                 <li><a href="<%=request.getContextPath()%>/friends.htm">Friends</a></li>
                 <li><a href="<%=request.getContextPath()%>/${currentUser.getId()}/profile.htm">Profile</a></li>
                 <li><a href="<%=request.getContextPath()%>/files.htm">Files</a></li>
-                <li><a href="<%=request.getContextPath()%>/notifications.htm">Notifications</a></li>
+                <c:choose>
+                    <c:when test="${nbNotifs == 0}">
+                        <li><a href="<%=request.getContextPath()%>/notifications.htm">Notifications</a></li>
+                    </c:when>
+                    <c:otherwise>
+                    <li><a style="font-weight: bold" href="<%=request.getContextPath()%>/notifications.htm">Notifications (${nbNotifs})</a></li>
+                    </c:otherwise>
+                </c:choose>
             </ul>
         </div>
            

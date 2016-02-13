@@ -5,6 +5,7 @@
  */
 package controller;
 
+import dao.NotificationsEntity;
 import dao.PostsEntity;
 import dao.UsersEntity;
 import java.util.ArrayList;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import service.NotificationsService;
 import service.PostsService;
 import service.UsersService;
 
@@ -30,6 +32,8 @@ public class PostsController {
     PostsService postsService;
     @Autowired
     UsersService usersService;
+    @Autowired
+    NotificationsService notifsService;
 
     // Method used to show all the posts related to the user
     @RequestMapping(value="home", method=RequestMethod.GET)
@@ -66,6 +70,7 @@ public class PostsController {
         ModelAndView mv = new ModelAndView("home");
         mv.addObject("currentUser", user);
         mv.addObject("posts", posts);
+        mv.addObject("nbNotifs", this.notifsService.searchByTarget(user).size());
         
         return mv;
     }
