@@ -37,7 +37,7 @@
                                 </div>
                             </div>
                             <div class="media-object-section">
-                                <a href="<%=request.getContextPath()%>/${friend.getId()}/profile.htm" class="margin-bottom-1 text-left">${friend.getName()}</a>
+                                <a class="size-36" href="<%=request.getContextPath()%>/${friend.getId()}/profile.htm" class="margin-bottom-1 text-left">${friend.getName()}</a>
                             </div>
                         </div>
                     </c:forEach>

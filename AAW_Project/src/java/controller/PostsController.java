@@ -8,6 +8,7 @@ package controller;
 import dao.PostsEntity;
 import dao.UsersEntity;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -41,6 +42,14 @@ public class PostsController {
         // Get all the posts sent by / to this user
         UsersEntity user = (UsersEntity)session.getAttribute("user");
         ArrayList<PostsEntity> posts = this.postsService.searchByTarget(user);
+        
+        // Add the posts sent by friends
+        for(UsersEntity friend : user.getFriends()) {
+            posts.addAll(this.postsService.searchBySender(friend));
+        }
+        
+        Collections.sort(posts, Collections.reverseOrder());
+        
         ModelAndView mv = new ModelAndView("home");
         mv.addObject("currentUser", user);
         mv.addObject("posts", posts);

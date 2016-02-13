@@ -62,6 +62,20 @@ public class PostsDaoImpl implements PostsDao {
         }
     }
     
+    @Transactional
+    @Override
+    public ArrayList<PostsEntity> searchBySender(UsersEntity sender) {
+        try {
+            return (ArrayList<PostsEntity>) this.em.createQuery(
+                "SELECT post "
+                + "FROM PostsEntity post "
+                + "WHERE post.sender = :sender")
+                .setParameter("sender", sender).getResultList();
+        } catch (NoResultException e) {
+            return null;
+        }
+    }
+    
     public EntityManager getEm() { return em; }
     public void setEm(EntityManager em) { this.em = em; }
 }

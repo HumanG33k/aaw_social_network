@@ -85,7 +85,12 @@ public class UsersDaoImpl implements UsersDao {
     @Transactional
     @Override
     public boolean addFriendship(UsersEntity user, UsersEntity friend) {
-        return user.addFriend(friend);
+        if(user.addFriend(friend) && friend.addFriend(user)) {
+            this.update(user);
+            this.update(friend);
+            return true;
+        }
+        return false;
     }
     
     public EntityManager getEm() { return em; }

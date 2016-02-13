@@ -72,10 +72,16 @@ public class NotificationsController {
             return new ModelAndView("index");
         }
         
+        UsersEntity user = (UsersEntity) session.getAttribute("user");
         NotificationsEntity notif = this.notifsService.find(notifId);
-        this.usersService.addFriendship(notif.getSender(), notif.getTarget());
+        if(user.equals(notif.getTarget()) && this.usersService.addFriendship(notif.getSender(), user)) {
+            session.setAttribute("user", user);
+        }
         this.notifsService.remove(notif);
 
-        return new ModelAndView("redirect:notifications.htm");
+        ModelAndView mv = new ModelAndView("redirect:/notifications.htm");
+        mv.addObject("currentUser", (UsersEntity) session.getAttribute("user"));
+        
+        return mv;
     }
 }

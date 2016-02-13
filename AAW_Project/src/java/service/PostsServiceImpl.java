@@ -31,4 +31,9 @@ public class PostsServiceImpl implements PostsService {
     public ArrayList<PostsEntity> searchByTarget(UsersEntity target) {
         return this.postsDao.searchByTarget(target);
     }
+    
+    @Override
+    public ArrayList<PostsEntity> searchBySender(UsersEntity sender) {
+        return this.postsDao.searchBySender(sender);
+    }
 }

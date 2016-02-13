@@ -17,4 +17,5 @@ public interface PostsDao {
     public void delete(PostsEntity post);
     public PostsEntity find(Long id);
     public ArrayList<PostsEntity> searchByTarget(UsersEntity target);
+    public ArrayList<PostsEntity> searchBySender(UsersEntity sender);
 }

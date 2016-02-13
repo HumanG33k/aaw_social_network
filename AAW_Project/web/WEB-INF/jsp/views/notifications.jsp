@@ -40,8 +40,8 @@
                             <div class="media-object-section">
                                 <a href="<%=request.getContextPath()%>/${notif.getSender().getId()}/profile.htm" class="margin-bottom-1 text-left size-24">${notif.getSender().getName()}</a>
                                 sent you a friend request.
-                                <a class="button success" href="<%=request.getContextPath()%>/${notif.getSender().getId()}/acceptFriend.htm">Accept</a>
-                                <a class="button alert" href="<%=request.getContextPath()%>/${notif.getSender().getId()}/denyFriend.htm">Deny</a>
+                                <a class="button success" href="<%=request.getContextPath()%>/${notif.getId()}/acceptFriend.htm">Accept</a>
+                                <a class="button alert" href="<%=request.getContextPath()%>/${notif.getId()}/denyFriend.htm">Deny</a>
                             </div>
                         </div>
                     </c:forEach>
