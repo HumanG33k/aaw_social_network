@@ -9,7 +9,6 @@ import dao.PostsEntity;
 import dao.UsersEntity;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,7 +39,7 @@ public class PostsController {
             return new ModelAndView("index");
         }
 
-        session.setAttribute("currentPage", "/home");
+        session.setAttribute("currentPage", "/home.htm");
         
         // Get all the posts sent to this user
         UsersEntity user = (UsersEntity)session.getAttribute("user");
@@ -87,6 +86,22 @@ public class PostsController {
             this.postsService.add(content, sender, target);
         }
         
-        return new ModelAndView("redirect:" + session.getAttribute("currentPage") + ".htm");
+        return new ModelAndView("redirect:" + session.getAttribute("currentPage"));
+    }
+    
+    // Method used to handle the removal of new post
+    @RequestMapping(value="{postId}/removePost", method=RequestMethod.GET)
+    public ModelAndView handleRemovePost(HttpServletRequest request, @PathVariable Long postId) {
+        HttpSession session = request.getSession();
+        if(session == null || !request.isRequestedSessionIdValid()) {
+            return new ModelAndView("index");
+        }
+        
+        PostsEntity post = this.postsService.find(postId);
+        if(post != null) {
+            this.postsService.remove(post);
+        }
+
+        return new ModelAndView("redirect:" + session.getAttribute("currentPage"));
     }
 }

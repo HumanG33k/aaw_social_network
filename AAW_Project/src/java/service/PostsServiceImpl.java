@@ -28,6 +28,16 @@ public class PostsServiceImpl implements PostsService {
     }
     
     @Override
+    public void remove(PostsEntity post) {
+        this.postsDao.delete(post);
+    }
+    
+    @Override
+    public PostsEntity find(Long id) {
+        return this.postsDao.find(id);
+    }
+    
+    @Override
     public ArrayList<PostsEntity> searchByTarget(UsersEntity target) {
         return this.postsDao.searchByTarget(target);
     }

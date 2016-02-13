@@ -109,7 +109,7 @@ public class UsersController {
             return new ModelAndView("index");
         }
         
-        session.setAttribute("currentPage", "/friends");
+        session.setAttribute("currentPage", "/friends.htm");
         
         UsersEntity user = (UsersEntity) session.getAttribute("user");
         ModelAndView mv = new ModelAndView("friends");
@@ -127,7 +127,7 @@ public class UsersController {
             return new ModelAndView("index");
         }
         
-        session.setAttribute("currentPage", "/search");
+        session.setAttribute("currentPage", "/search.htm");
         
         String searchName = request.getParameter("searchName");
         ArrayList<UsersEntity> users = this.usersService.searchByName(searchName);
@@ -147,7 +147,7 @@ public class UsersController {
             return new ModelAndView("index");
         }
         
-        session.setAttribute("currentPage", "profile");
+        session.setAttribute("currentPage", "/" + userId.toString() + "/profile.htm");
         
         UsersEntity user = (UsersEntity) session.getAttribute("user");
         UsersEntity targetUser = this.usersService.find(userId);

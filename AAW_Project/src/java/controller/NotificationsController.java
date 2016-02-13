@@ -38,7 +38,7 @@ public class NotificationsController {
             return new ModelAndView("index");
         }
 
-        session.setAttribute("currentPage", "/notifications");
+        session.setAttribute("currentPage", "/notifications.htm");
         
         // Get all the notifications sent to this user
         UsersEntity user = (UsersEntity)session.getAttribute("user");
@@ -81,7 +81,7 @@ public class NotificationsController {
         }
         this.notifsService.remove(notif);
 
-        ModelAndView mv = new ModelAndView("redirect:" + session.getAttribute("currentPage") + ".htm");
+        ModelAndView mv = new ModelAndView("redirect:" + session.getAttribute("currentPage"));
         mv.addObject("currentUser", (UsersEntity) session.getAttribute("user"));
         
         return mv;

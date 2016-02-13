@@ -41,6 +41,9 @@
                                 <a class="size-21" href="<%=request.getContextPath()%>/${post.getTarget().getId()}/profile.htm">${post.getTarget().getName()}</a>
                             </c:if>
                             <span class="size-12">(${post.getDate()})</span>
+                            <c:if test="${post.getSender() == currentUser || post.getTarget() == currentUser}">
+                                <a class="size-12" style="color: red; font-weight: bold" href="<%=request.getContextPath()%>/${post.getId()}/removePost.htm">Remove</a>
+                            </c:if>
                             <div>
                                 ${post.getContent()}
                             </div>
