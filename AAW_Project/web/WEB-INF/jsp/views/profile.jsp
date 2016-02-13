@@ -54,7 +54,6 @@
             </c:choose>
         </div>
         
-        
         <hr/>
         
         <c:choose>
@@ -64,9 +63,7 @@
                 </div>
             </c:when>
             <c:otherwise>
-                <div class="text-center">
-                    TODO Show posts here.
-                </div>
+                <%@ include file="../fragments/_posts.jsp" %>
             </c:otherwise>
         </c:choose>
 

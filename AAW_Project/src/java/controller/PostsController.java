@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -41,13 +42,24 @@ public class PostsController {
 
         session.setAttribute("currentPage", "/home");
         
-        // Get all the posts sent by / to this user
+        // Get all the posts sent to this user
         UsersEntity user = (UsersEntity)session.getAttribute("user");
         ArrayList<PostsEntity> posts = this.postsService.searchByTarget(user);
         
+        // Add the posts sent by this user
+        for(PostsEntity post : this.postsService.searchBySender(user)) {
+            if(!posts.contains(post)) {
+                posts.add(post);
+            }
+        }
+        
         // Add the posts sent by friends
         for(UsersEntity friend : user.getFriends()) {
-            posts.addAll(this.postsService.searchBySender(friend));
+            for(PostsEntity post : this.postsService.searchBySender(friend)) {
+                if(!posts.contains(post)) {
+                    posts.add(post);
+                }
+            }
         }
         
         Collections.sort(posts, Collections.reverseOrder());
@@ -60,8 +72,8 @@ public class PostsController {
     }
     
     // Method used to handle the creation of a new post
-    @RequestMapping(value="createPost", method=RequestMethod.POST, params="postContent")
-    public ModelAndView handleAddPost(HttpServletRequest request) {
+    @RequestMapping(value="{userId}/createPost", method=RequestMethod.POST, params="postContent")
+    public ModelAndView handleAddPost(HttpServletRequest request, @PathVariable Long userId) {
         HttpSession session = request.getSession();
         if(session == null || !request.isRequestedSessionIdValid()) {
             return new ModelAndView("index");
@@ -71,9 +83,10 @@ public class PostsController {
         
         if(!content.isEmpty()) {
             UsersEntity sender = (UsersEntity)session.getAttribute("user");
-            this.postsService.add(content, sender, sender);
+            UsersEntity target = this.usersService.find(userId);
+            this.postsService.add(content, sender, target);
         }
         
-        return handleHome(request);
+        return new ModelAndView("redirect:" + session.getAttribute("currentPage") + ".htm");
     }
 }

@@ -2,8 +2,10 @@ package controller;
 
 import common.Enums.SignInResult;
 import dao.NotificationsEntity;
+import dao.PostsEntity;
 import dao.UsersEntity;
 import java.util.ArrayList;
+import java.util.Collections;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 import service.NotificationsService;
+import service.PostsService;
 import service.UsersService;
 
 /**
@@ -25,6 +28,8 @@ public class UsersController {
     UsersService usersService;
     @Autowired
     NotificationsService notifsService;
+    @Autowired
+    PostsService postsService;
 
     // Method used to display the index page
     @RequestMapping(value="index", method=RequestMethod.GET)
@@ -169,6 +174,18 @@ public class UsersController {
             }
         }
 
+        ArrayList<PostsEntity> posts = this.postsService.searchByTarget(targetUser);
+        
+        // Add the posts sent by this user
+        for(PostsEntity post : this.postsService.searchBySender(targetUser)) {
+            if(!posts.contains(post)) {
+                posts.add(post);
+            }
+        }
+        
+        Collections.sort(posts, Collections.reverseOrder());
+        mv.addObject("posts", posts);
+        
         return mv;
     }
     
