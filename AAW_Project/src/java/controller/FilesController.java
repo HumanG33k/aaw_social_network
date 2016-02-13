@@ -1,10 +1,12 @@
 package controller;
 
 import dao.UsersEntity;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -38,8 +40,9 @@ public class FilesController {
         return mv;
     }
 
+
     @RequestMapping(value = "{userId}/files", method = RequestMethod.POST)
-    public ModelAndView handleFileUpload(HttpServletRequest request, @RequestParam("fileToUpload") MultipartFile file) {
+    public ModelAndView handleFileUpload(HttpServletRequest request, @RequestParam("fileToUpload") MultipartFile file, @PathVariable Long userId) {
         HttpSession session = request.getSession();
         ModelAndView mv;
         if (session == null || !request.isRequestedSessionIdValid()) {

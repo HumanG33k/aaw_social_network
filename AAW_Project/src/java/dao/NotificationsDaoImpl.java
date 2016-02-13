@@ -61,4 +61,20 @@ public class NotificationsDaoImpl implements NotificationsDao {
             return null;
         }
     }
+    
+    @Transactional
+    @Override
+    public NotificationsEntity searchBySenderTarget(UsersEntity sender, UsersEntity target) {
+        try {
+            return (NotificationsEntity) this.em.createQuery(
+                "SELECT notif "
+                + "FROM NotificationsEntity notif "
+                + "WHERE notif.sender = :sender "
+                + "AND notif.target = :target")
+                .setParameter("sender", sender)
+                .setParameter("target", target).getSingleResult();
+        } catch (NoResultException e) {
+            return null;
+        }
+    }
 }

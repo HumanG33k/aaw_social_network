@@ -45,4 +45,9 @@ public class NotificationsServiceImpl implements NotificationsService {
     public ArrayList<NotificationsEntity> searchByTarget(UsersEntity target) {
         return this.notifsDao.searchByTarget(target);
     }
+    
+    @Override
+    public NotificationsEntity searchBySenderTarget(UsersEntity sender, UsersEntity target) {
+        return this.notifsDao.searchBySenderTarget(sender, target);
+    }
 }

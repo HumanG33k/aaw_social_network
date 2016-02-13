@@ -15,6 +15,8 @@ import java.util.ArrayList;
  */
 public interface PostsService {
     public void add(String content, UsersEntity sender, UsersEntity target);
+    public void remove(PostsEntity post);
+    public PostsEntity find(Long id);
     public ArrayList<PostsEntity> searchByTarget(UsersEntity target);
     public ArrayList<PostsEntity> searchBySender(UsersEntity sender);
 }

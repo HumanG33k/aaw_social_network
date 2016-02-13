@@ -74,6 +74,11 @@ public class UsersServiceImpl implements UsersService {
     }
     
     @Override
+    public boolean removeFriendship(UsersEntity user, UsersEntity friend) {
+        return this.usersDao.removeFriendship(user, friend);
+    }
+    
+    @Override
     public void updateInfo(UsersEntity user, String newInfo) {
         user.setInformation(newInfo);
         this.usersDao.update(user);

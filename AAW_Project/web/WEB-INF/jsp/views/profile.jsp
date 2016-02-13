@@ -34,16 +34,25 @@
                 <c:when test="${myFriend == false}">
                     Public information :
                     <i>${user.getInformation()}</i>
-                    <a class="button" href="<%=request.getContextPath()%>/${user.getId()}/sendRequest.htm">Add friend</a>
+                    <c:choose>
+                        <c:when test="${requestSent == true}">
+                            <a class="button disabled" href="<%=request.getContextPath()%>/${user.getId()}/sendRequest.htm">Request sent</a>
+                        </c:when>
+                        <c:when test="${requestReceived == true}">
+                            <a class="button success" href="<%=request.getContextPath()%>/${notifId}/acceptFriend.htm">Accept request</a>
+                        </c:when>
+                        <c:otherwise>
+                            <a class="button" href="<%=request.getContextPath()%>/${user.getId()}/sendRequest.htm">Add friend</a>
+                        </c:otherwise>
+                    </c:choose>
                 </c:when>
                 <c:otherwise>
                     Public information :
                     <i>${user.getInformation()}</i>
-                    <button type="submit alert" class="button">Remove friend</button>
+                    <a class="button alert" href="<%=request.getContextPath()%>/${user.getId()}/removeFriend.htm">Remove friend</a>
                 </c:otherwise>
             </c:choose>
         </div>
-        
         
         <hr/>
         
@@ -54,9 +63,7 @@
                 </div>
             </c:when>
             <c:otherwise>
-                <div class="text-center">
-                    TODO Show posts here.
-                </div>
+                <%@ include file="../fragments/_posts.jsp" %>
             </c:otherwise>
         </c:choose>
 

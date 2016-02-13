@@ -26,7 +26,7 @@
                 <input type="submit" value="Upload Image" name="submit">-->
 
 
-        <form action="${pageContext.request.contextPath}/files.htm" method="post" enctype="multipart/form-data">
+        <form action="${pageContext.request.contextPath}/${user.getId()}/files.htm" method="post" enctype="multipart/form-data">
             <div class="input-group">
                 <!--<label class="input-group-label">$</label>-->
                 <label class="fi-download size-36 input-group-field ">

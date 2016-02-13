@@ -24,6 +24,14 @@
           p:prefix="/WEB-INF/jsp/views/"
           p:suffix=".jsp" />
     
+    <bean id="multipartResolver"
+          class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+
+        <!-- one of the properties available; the maximum file size in bytes -->
+        <property name="maxUploadSize" value="100000"/>
+    </bean>
+    
+    
     <context:annotation-config/>
     <context:component-scan base-package="controller"/>
     <context:component-scan base-package="dao"/>

@@ -66,7 +66,6 @@ public class UsersDaoImpl implements UsersDao {
     @Override
     public ArrayList<UsersEntity> searchByName(String name) {
         try {
-             
             String sql = "WHERE user.name LIKE '%"+name+"%'" ;
             
             return (ArrayList<UsersEntity>) this.em.createQuery(
@@ -89,6 +88,17 @@ public class UsersDaoImpl implements UsersDao {
     @Override
     public boolean addFriendship(UsersEntity user, UsersEntity friend) {
         if(user.addFriend(friend) && friend.addFriend(user)) {
+            this.update(user);
+            this.update(friend);
+            return true;
+        }
+        return false;
+    }
+    
+    @Transactional
+    @Override
+    public boolean removeFriendship(UsersEntity user, UsersEntity friend) {
+        if(user.removeFriend(friend) && friend.removeFriend(user)) {
             this.update(user);
             this.update(friend);
             return true;

@@ -58,6 +58,14 @@ public class UsersEntity implements Serializable {
         return false;
     }
     
+    public boolean removeFriend(UsersEntity friend) {
+        if(this.friends.contains(friend)) {
+            this.friends.remove(friend);
+            return true;
+        }
+        return false;
+    }
+    
     @Override
     public int hashCode() {
         int hash = 0;

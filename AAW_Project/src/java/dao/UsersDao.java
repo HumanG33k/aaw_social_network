@@ -20,4 +20,5 @@ public interface UsersDao {
     public ArrayList<UsersEntity> searchByName(String name);
     public boolean checkFriendship(UsersEntity user, UsersEntity friend);
     public boolean addFriendship(UsersEntity user, UsersEntity friend);
+    public boolean removeFriendship(UsersEntity user, UsersEntity friend);
 }
