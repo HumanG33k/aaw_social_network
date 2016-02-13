@@ -22,4 +22,5 @@ public interface UsersService {
     public SignInResult checkSignIn(String name, String password);
     public boolean checkFriendship(UsersEntity user, UsersEntity friend);
     public boolean addFriendship(UsersEntity user, UsersEntity friend);
+    public void updateInfo(UsersEntity user, String newInfo);
 }

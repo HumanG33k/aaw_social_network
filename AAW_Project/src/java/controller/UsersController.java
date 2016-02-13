@@ -74,14 +74,12 @@ public class UsersController {
                 mv.addObject("indexMessage", "Error: Incorrect password.");
             }
         } else {
-            mv = new ModelAndView("home");
+            mv = new ModelAndView("redirect:home.htm");
             
             // Creating the session of the user
             HttpSession session = request.getSession(true);
             session.setAttribute("user", this.usersService.findByName(name));
             session.setMaxInactiveInterval(600); // Inactive after 10 minutes
-            
-//            return handleHome();
         }
         
         return mv;
@@ -104,6 +102,7 @@ public class UsersController {
         
         UsersEntity user = (UsersEntity) session.getAttribute("user");
         ModelAndView mv = new ModelAndView("friends");
+        mv.addObject("currentUser", user);
         mv.addObject("friends", user.getFriends());
         
         return mv;
@@ -120,6 +119,8 @@ public class UsersController {
         String searchName = request.getParameter("searchName");
         ArrayList<UsersEntity> users = this.usersService.searchByName(searchName);
         ModelAndView mv = new ModelAndView("search");
+        UsersEntity user = (UsersEntity) session.getAttribute("user");
+        mv.addObject("currentUser", user);
         mv.addObject("users", users);
 
         return mv;
@@ -137,10 +138,28 @@ public class UsersController {
         UsersEntity targetUser = this.usersService.find(userId);
         
         ModelAndView mv = new ModelAndView("profile");
+        mv.addObject("currentUser", user);
         mv.addObject("user", targetUser);
         mv.addObject("myProfile", user.equals(targetUser));
         mv.addObject("myFriend", this.usersService.checkFriendship(user, targetUser));
         
         return mv;
+    }
+    
+    // Method used to change the user info
+    @RequestMapping(value="{userId}/userInfo", method=RequestMethod.POST)
+    public ModelAndView handleUserInfo(HttpServletRequest request, @PathVariable Long userId) {
+        HttpSession session = request.getSession();
+        if(session == null || !request.isRequestedSessionIdValid()) {
+            return new ModelAndView("index");
+        }
+        
+        UsersEntity user = (UsersEntity) session.getAttribute("user");
+        String newInfo = request.getParameter("infoInput");
+        if(!newInfo.isEmpty()) {
+            this.usersService.updateInfo(user, newInfo);
+        }
+
+        return new ModelAndView("redirect:profile.htm");
     }
 }

@@ -3,18 +3,19 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package dao;
+package service;
 
+import dao.NotificationsEntity;
+import dao.UsersEntity;
 import java.util.ArrayList;
 
 /**
  *
  * @author Nathanael Villemin
  */
-public interface NotificationsDao {
-    public void save(NotificationsEntity notif);
-    public void update(NotificationsEntity notif);
-    public void delete(NotificationsEntity notif);
+public interface NotificationsService {
+    public void add(UsersEntity sender, UsersEntity target);
+    public boolean remove(NotificationsEntity notif);
     public NotificationsEntity find(Long id);
     public ArrayList<NotificationsEntity> searchByTarget(UsersEntity target);
 }

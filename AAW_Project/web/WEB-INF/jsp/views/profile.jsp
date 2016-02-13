@@ -21,25 +21,29 @@
             <p>${user.getName()} profile</p>
         </div>
        
-        <form method="post" action="<%=request.getContextPath()%>/${user.getId()}/profile.htm">
-            <div class="text-center size-24">
-                Public information :
-                <c:choose>
-                    <c:when test="${myProfile == true}">
-                        <input placeholder="${user.getInformation()}" name="infoInput">
+        
+        <div class="text-center size-24">
+            <c:choose>
+                <c:when test="${myProfile == true}">
+                    <form method="post" action="<%=request.getContextPath()%>/${user.getId()}/userInfo.htm">
+                        Public information :
+                        <input name="infoInput" value="${user.getInformation()}">
                         <button type="submit" class="button success">Save</button>
-                    </c:when>
-                    <c:when test="${myFriend == false}">
-                        <i>${user.getInformation()}</i>
-                        <button type="submit" class="button">Add friend</button>
-                    </c:when>
-                    <c:otherwise>
-                        <i>${user.getInformation()}</i>
-                        <button type="submit alert" class="button">Remove friend</button>
-                    </c:otherwise>
-                </c:choose>
-            </div>
-        </form>
+                    </form>
+                </c:when>
+                <c:when test="${myFriend == false}">
+                    Public information :
+                    <i>${user.getInformation()}</i>
+                    <a class="button" href="<%=request.getContextPath()%>/${user.getId()}/sendRequest.htm">Add friend</a>
+                </c:when>
+                <c:otherwise>
+                    Public information :
+                    <i>${user.getInformation()}</i>
+                    <button type="submit alert" class="button">Remove friend</button>
+                </c:otherwise>
+            </c:choose>
+        </div>
+        
         
         <hr/>
         

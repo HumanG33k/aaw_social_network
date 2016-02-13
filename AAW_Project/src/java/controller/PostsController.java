@@ -42,6 +42,7 @@ public class PostsController {
         UsersEntity user = (UsersEntity)session.getAttribute("user");
         ArrayList<PostsEntity> posts = this.postsService.searchByTarget(user);
         ModelAndView mv = new ModelAndView("home");
+        mv.addObject("currentUser", user);
         mv.addObject("posts", posts);
         
         return mv;
