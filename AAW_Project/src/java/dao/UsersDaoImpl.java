@@ -66,11 +66,14 @@ public class UsersDaoImpl implements UsersDao {
     @Override
     public ArrayList<UsersEntity> searchByName(String name) {
         try {
+             
+            String sql = "WHERE user.name LIKE '%"+name+"%'" ;
+            
             return (ArrayList<UsersEntity>) this.em.createQuery(
                 "SELECT user "
                 + "FROM UsersEntity user "
-                + "WHERE user.name LIKE :name")
-                .setParameter("name", name).getResultList();
+                + sql)
+                .getResultList();
         } catch (NoResultException e) {
             return null;
         }
