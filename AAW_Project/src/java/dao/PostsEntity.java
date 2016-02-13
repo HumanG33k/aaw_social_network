@@ -6,13 +6,17 @@
 package dao;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -24,8 +28,9 @@ import javax.persistence.Temporal;
 @Entity
 @Table(name = "posts")
 public class PostsEntity implements Serializable, Comparable<PostsEntity> {
+
     private static final long serialVersionUID = 1L;
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -41,9 +46,15 @@ public class PostsEntity implements Serializable, Comparable<PostsEntity> {
     @Temporal(javax.persistence.TemporalType.TIMESTAMP)
     private Date datePost;
 
-    public PostsEntity() {}
+    @ManyToMany(fetch = FetchType.EAGER)
+    private List<FilesEntity> files = new ArrayList<>();;
+
+    public PostsEntity() {
+
+    }
 
     public PostsEntity(String content, UsersEntity sender, UsersEntity target) {
+        this.files = new ArrayList<>();
         this.content = content;
         this.sender = sender;
         this.target = target;
@@ -74,21 +85,50 @@ public class PostsEntity implements Serializable, Comparable<PostsEntity> {
     public String toString() {
         return "dao.PostsEntity[ id=" + id + " ]";
     }
-    
+
     @Override
     public int compareTo(PostsEntity post) {
         return this.datePost.compareTo(post.getDate());
     }
-    
+
     // Getters ands setters
-    public Long getId() { return id; }
-    public void setId(Long id) { this.id = id; }
-    public String getContent() { return content; }
-    public void setContent(String content) { this.content = content; }
-    public UsersEntity getSender() { return sender; }
-    public void setSender(UsersEntity sender) { this.sender = sender; }
-    public UsersEntity getTarget() { return target; }
-    public void setTarget(UsersEntity target) { this.target = target; }
-    public Date getDate() { return this.datePost; }
-    public void setDate(Date datePost) { this.datePost = datePost; }
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public UsersEntity getSender() {
+        return sender;
+    }
+
+    public void setSender(UsersEntity sender) {
+        this.sender = sender;
+    }
+
+    public UsersEntity getTarget() {
+        return target;
+    }
+
+    public void setTarget(UsersEntity target) {
+        this.target = target;
+    }
+
+    public Date getDate() {
+        return this.datePost;
+    }
+
+    public void setDate(Date datePost) {
+        this.datePost = datePost;
+    }
 }

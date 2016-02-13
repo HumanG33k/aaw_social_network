@@ -12,7 +12,7 @@
                 <li><a href="<%=request.getContextPath()%>/home.htm">Home</a></li>
                 <li><a href="<%=request.getContextPath()%>/friends.htm">Friends</a></li>
                 <li><a href="<%=request.getContextPath()%>/${user.getId()}/profile.htm">Profile</a></li>
-                <li><a href="<%=request.getContextPath()%>/files.htm">Files</a></li>
+                <li><a href="<%=request.getContextPath()%>/${user.getId()}/files.htm">Files</a></li>
                 <li><a href="<%=request.getContextPath()%>/notifications.htm">Notifications</a></li>
             </ul>
         </div>

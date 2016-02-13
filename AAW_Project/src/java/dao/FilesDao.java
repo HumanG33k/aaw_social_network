@@ -5,10 +5,21 @@
  */
 package dao;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Nathanael Villemin
  */
 public interface FilesDao {
+
+    public void save(FilesEntity file);
+
+    public void update(FilesEntity file);
+
+    public void delete(FilesEntity file);
     
+    public FilesEntity find(Long id);
+    
+    public ArrayList<FilesEntity> findByOwner(UsersEntity owner);
 }
